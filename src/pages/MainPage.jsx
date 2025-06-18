@@ -37,7 +37,9 @@ const ThemeToggle = styled.button`
 
   @media (max-width: 768px) {
     right: auto;
+    top: auto;
     left: 20px;
+    bottom: 20px;
   }
 `;
 
