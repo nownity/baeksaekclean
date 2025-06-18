@@ -44,7 +44,7 @@ const Nav = styled.nav`
     width: 220px;
     background-color: ${({ theme }) => theme.herobg};
     transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
-    transition: transform 0.3s ease-in-out;
+    transition: transform, background-color 0.3s ease-in-out;
     z-index: 999;
     padding-top: 13px;
     box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
