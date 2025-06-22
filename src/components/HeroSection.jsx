@@ -47,6 +47,10 @@ const Title = styled.h1`
   transition: color 0.3s ease-in-out;
   margin-bottom: 20px;
   z-index: 1;
+  @media (max-width: 768px) {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
 `;
 
 const WhiteText = styled.span`
@@ -61,6 +65,10 @@ const SubTitle = styled.h1`
   transition: color 0.3s ease-in-out;
   padding-left: 20px;
   z-index: 1;
+  @media (max-width: 768px) {
+    font-size: 15px;
+    padding-left: 10px;
+  }
 `;
 
 const BtnSection = styled.section`
