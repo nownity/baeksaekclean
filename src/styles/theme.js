@@ -1,6 +1,10 @@
 export const lightTheme = {
+  mode: "light",
   background: "#FFFFFF",
   text: "#111111",
+  textSub: "#464646",
+  textWhite: "#ffffff",
+  contactBtn: "#111111",
   headertext: "#383838",
   section: "#F5F5F5",
   headerbg: "#ffffff",
@@ -10,11 +14,16 @@ export const lightTheme = {
   scrollBar: "#919191",
   scrollBg: "#b1b1b1",
   togglebtn: "#c4c4c4",
+  imgfilter: "none",
 };
 
 export const darkTheme = {
+  mode: "dark",
   background: "#0F0F0F",
   text: "#E5E5E5",
+  textSub: "#b3b3b3",
+  textWhite: "#111111",
+  contactBtn: "#E5E5E5",
   headertext: "#a1a1a1",
   section: "#1C1C1E",
   headerbg: "#0f0f0f",
@@ -24,4 +33,5 @@ export const darkTheme = {
   scrollBar: "#919191",
   scrollBg: "#b1b1b1",
   togglebtn: "#727272",
+  imgfilter: "brightness(0.7) contrast(1.1)",
 };

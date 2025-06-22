@@ -55,10 +55,10 @@ const NavItem = styled.button`
   background: none;
   border: none;
   font-size: 1rem;
-  font-weight: ${({ active }) => (active ? "700" : "400")};
-  color: ${({ active, theme }) => (active ? theme.text : theme.headertext)};
-  border-bottom: ${({ active, theme }) =>
-    active ? `2px solid ${theme.text}` : "none"};
+  font-weight: ${({ $active }) => ($active ? "700" : "400")};
+  color: ${({ $active, theme }) => ($active ? theme.text : theme.headertext)};
+  border-bottom: ${({ $active, theme }) =>
+    $active ? `2px solid ${theme.text}` : "none"};
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 
@@ -75,7 +75,7 @@ const Hamburger = styled.button`
   display: none;
 
   @media (max-width: 768px) {
-    display: ${({ show }) => (show ? "block" : "none")};
+    display: ${({ $show }) => ($show ? "block" : "none")};
     position: fixed;
     top: 20px;
     right: 20px;
@@ -175,7 +175,7 @@ const Header = ({ currentSection, sectionRefs }) => {
         백색클린
       </Logo>
 
-      <Hamburger onClick={() => setMenuOpen(true)} show={!menuOpen}>
+      <Hamburger onClick={() => setMenuOpen(true)} $show={!menuOpen}>
         ☰
       </Hamburger>
       <Nav open={menuOpen}>
@@ -189,25 +189,25 @@ const Header = ({ currentSection, sectionRefs }) => {
         </MLogo>
         <NavItem
           onClick={() => scrollToSection("about")}
-          active={currentSection === "about"}
+          $active={currentSection === "about"}
         >
           회사소개
         </NavItem>
         <NavItem
           onClick={() => scrollToSection("sample")}
-          active={currentSection === "sample"}
+          $active={currentSection === "sample"}
         >
           청소사례
         </NavItem>
         <NavItem
           onClick={() => scrollToSection("info")}
-          active={currentSection === "info"}
+          $active={currentSection === "info"}
         >
           고객후기
         </NavItem>
         <NavItem
           onClick={() => scrollToSection("contact")}
-          active={currentSection === "contact"}
+          $active={currentSection === "contact"}
         >
           문의하기
         </NavItem>

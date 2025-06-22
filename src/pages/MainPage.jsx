@@ -88,7 +88,10 @@ const MainPage = ({ toggleTheme, isDarkMode }) => {
       <Header currentSection={currentSection} sectionRefs={sectionRefs} />
       <MainWrapper>
         <section id="hero" ref={sectionRefs.hero}>
-          <HeroSection />
+          <HeroSection
+            currentSection={currentSection}
+            sectionRefs={sectionRefs}
+          />
         </section>
         <section id="about" ref={sectionRefs.about}>
           <AboutSection />
