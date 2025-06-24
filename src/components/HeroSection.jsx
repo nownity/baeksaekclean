@@ -4,14 +4,13 @@ import ContactBtn from "./ContactBtn";
 
 const Section = styled.section`
   width: 100%;
-  /* aspect-ratio: 1920 / 800; */
   height: 85vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.herobg};
-  transition: background-color 0.3s ease-in-out;
+  /* background-color: ${({ theme }) => theme.herobg};
+  transition: background-color 0.3s ease-in-out; */
   background-image: url(${main1});
   background-size: cover;
   background-position: center;

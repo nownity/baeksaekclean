@@ -6,7 +6,7 @@ const Section = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.aboutbg};
+  background-color: ${({ theme }) => theme.herobg};
   transition: background-color 0.3s ease-in-out;
 `;
 
