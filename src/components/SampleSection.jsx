@@ -1,5 +1,13 @@
 import styled from "styled-components";
 import sample1 from "../images/sample1.jpg";
+import ImageSlider from "./ImageSlider";
+import { FiChevronDown } from "react-icons/fi";
+import ex11 from "../images/ex1-1.jpg";
+import ex12 from "../images/ex1-2.jpg";
+import ex13 from "../images/ex1-3.jpg";
+import ex21 from "../images/ex2-1.jpg";
+import ex22 from "../images/ex2-2.jpg";
+import ex23 from "../images/ex2-3.jpg";
 
 const Section = styled.section`
   width: 100%;
@@ -14,21 +22,19 @@ const Section = styled.section`
 const ImageSection = styled.img`
   width: 100%;
   height: auto;
-  aspect-ratio: 1920 / 600;
+  aspect-ratio: 1920 / 400;
   object-fit: contain;
 `;
 
 const BtnSection = styled.div`
-  width: 80%;
+  width: 60%;
   height: auto;
   aspect-ratio: 1550 / 300;
   display: flex;
   justify-content: center;
-  gap: 0.7vw;
-  padding: 0.7vw;
-  background: #6d6d6d;
+  gap: 0.5vw;
+  padding: 0.5vw;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: relative;
   transform: translateY(-60%);
   z-index: 10;
@@ -38,16 +44,150 @@ const NavBtn = styled.div`
   width: 287px;
   aspect-ratio: 500 / 300;
   background: white;
+  border: 1px solid #000000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 500;
 `;
 
+const FirstSection = styled.div`
+  width: 100%;
+`;
+
+const TitleWrapper = styled.div`
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 50px;
+`;
+
+const Title = styled.div`
+  font-size: 40px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.text};
+  transition: color 0.3s ease-in-out;
+`;
+
+const SubTitle = styled.div`
+  font-size: 16px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.text};
+  transition: color 0.3s ease-in-out;
+`;
+
+const ExWrapper = styled.div`
+  width: 100%;
+  padding: 20px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  gap: 100px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+`;
+
+const DescriptionBox = styled.div`
+  flex: 1;
+  max-width: 600px;
+`;
+
+const DesTitle = styled.div`
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: ${({ theme }) => theme.text};
+`;
+
+const DesText = styled.div`
+  font-size: 20px;
+  line-height: 1.7;
+  color: ${({ theme }) => theme.text};
+`;
+
+const DesTitleR = styled.div`
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: ${({ theme }) => theme.text};
+  text-align: right;
+`;
+
+const DesTextR = styled.div`
+  font-size: 20px;
+  line-height: 1.7;
+  color: ${({ theme }) => theme.text};
+  text-align: right;
+`;
+const SecondSection = styled.div`
+  width: 100%;
+`;
+
+const ThirdSection = styled.div`
+  width: 100%;
+`;
+
+const FourthSection = styled.div`
+  width: 100%;
+`;
+
+const FifthSection = styled.div`
+  width: 100%;
+`;
+
+const DownBtn = styled.button`
+  width: 100%;
+  margin-top: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  animation: bounce 1.5s infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 36px;
+    height: 36px;
+    stroke: ${({ theme }) => theme.text};
+    transition: transform 0.3s ease;
+  }
+
+  &:hover svg {
+    transform: translateY(15px);
+    opacity: 0.8;
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(8px);
+    }
+  }
+`;
+
 const SampleSection = () => {
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <Section>
       <ImageSection
@@ -57,12 +197,152 @@ const SampleSection = () => {
         decoding="async"
       />
       <BtnSection>
-        <NavBtn>입주 · 거주 청소</NavBtn>
-        <NavBtn>이사 청소</NavBtn>
-        <NavBtn>상가 청소</NavBtn>
-        <NavBtn>준공 청소</NavBtn>
-        <NavBtn>특수 청소</NavBtn>
+        <NavBtn onClick={() => scrollToSection("section1")}>
+          입주 · 거주 청소
+        </NavBtn>
+        <NavBtn onClick={() => scrollToSection("section2")}>이사 청소</NavBtn>
+        <NavBtn onClick={() => scrollToSection("section3")}>상가 청소</NavBtn>
+        <NavBtn onClick={() => scrollToSection("section4")}>준공 청소</NavBtn>
+        <NavBtn onClick={() => scrollToSection("section5")}>특수 청소</NavBtn>
       </BtnSection>
+
+      <FirstSection id="section1">
+        <TitleWrapper>
+          <Title>입주 · 거주 청소</Title>
+          <SubTitle>cleaning of the house</SubTitle>
+        </TitleWrapper>
+        <ExWrapper>
+          <DescriptionBox>
+            <DesTitle>
+              입주 전, <br />
+              새집의 첫인상을 책임집니다
+            </DesTitle>
+            <DesText>
+              입주 · 거주 청소는 새로 이사 들어가기 전, <br />
+              혹은 지금 살고 있는 집의 먼지, 곰팡이, 기름때 등 <br />
+              눈에 보이지 않는 오염까지 제거하는
+              <br />
+              프리미엄 서비스입니다.
+              <br />
+              <br />
+              주방, 욕실, 창틀, 몰딩, 바닥 등 각 공간별로
+              <br />
+              전문가가 꼼꼼히 청소하며, 살균과 탈취까지
+              <br /> 함께 진행되어 안심하고 거주하실 수 있습니다.
+            </DesText>
+          </DescriptionBox>
+          <ImageSlider images={[ex11, ex12, ex13]} />
+        </ExWrapper>
+        <DownBtn onClick={() => scrollToSection("section2")}>
+          <FiChevronDown />
+        </DownBtn>
+      </FirstSection>
+
+      <SecondSection id="section2">
+        <TitleWrapper>
+          <Title>이사 청소</Title>
+          <SubTitle>Moving Day Cleaning</SubTitle>
+        </TitleWrapper>
+        <ExWrapper>
+          <ImageSlider images={[ex21, ex22, ex23]} />
+          <DescriptionBox>
+            <DesTitleR>완벽한 이사, 깔끔한 시작으로부터</DesTitleR>
+            <DesTextR>
+              이사 전후의 청소는 단순한 정리가 아니라,
+              <br /> 새 출발을 위한 준비입니다. 새 집을 맞이하기 전,
+              <br /> 또는 떠나기 전 공간을 정성껏 청소해드려요.
+              <br />
+              <br />
+              주방의 기름때, 욕실의 곰팡이, 바닥의 먼지까지
+              <br />
+              꼼꼼하게 제거하여 다음 사람을 위한 배려이자
+              <br /> 나를 위한 시작을 함께합니다.
+            </DesTextR>
+          </DescriptionBox>
+        </ExWrapper>
+        <DownBtn onClick={() => scrollToSection("section3")}>
+          <FiChevronDown />
+        </DownBtn>
+      </SecondSection>
+
+      <ThirdSection id="section3">
+        <TitleWrapper>
+          <Title>상가 청소</Title>
+          <SubTitle>Commercial Space Cleaning</SubTitle>
+        </TitleWrapper>
+        <ExWrapper>
+          <DescriptionBox>
+            <DesTitle>첫인상은 공간이 말합니다</DesTitle>
+            <DesText>
+              매장, 사무실, 카페 등 고객과 직원이 오가는 공간은
+              <br />늘 깔끔하고 쾌적해야 합니다.
+              <br />
+              <br />
+              상가 청소는 바닥의 오염, 유리창의 지문,
+              <br />
+              화장실 위생까지 전반적으로 관리하여
+              <br /> 고객에게 신뢰를 주는 공간으로 만들어드립니다.
+            </DesText>
+          </DescriptionBox>
+          <ImageSlider images={[ex11, ex12, ex13]} />
+        </ExWrapper>
+        <DownBtn onClick={() => scrollToSection("section4")}>
+          <FiChevronDown />
+        </DownBtn>
+      </ThirdSection>
+
+      <FourthSection id="section4">
+        <TitleWrapper>
+          <Title>준공 청소</Title>
+          <SubTitle>Post-Construction Cleaning</SubTitle>
+        </TitleWrapper>
+        <ExWrapper>
+          <ImageSlider images={[ex11, ex12, ex13]} />
+          <DescriptionBox>
+            <DesTitleR>완공 후 마지막 터치, 청결</DesTitleR>
+            <DesTextR>
+              공사 후 남은 먼지, 시멘트가루, 도장자국 등은
+              <br />
+              일반 청소로는 처리하기 어렵습니다.
+              <br />
+              <br />
+              준공 청소는 공사 현장을 실제
+              <br /> 사용 가능한 공간으로 바꾸는 마무리 작업입니다.
+              <br />
+              전문 장비와 약제를 사용해 세밀하게 마무리해드립니다.
+            </DesTextR>
+          </DescriptionBox>
+        </ExWrapper>
+        <DownBtn onClick={() => scrollToSection("section5")}>
+          <FiChevronDown />
+        </DownBtn>
+      </FourthSection>
+
+      <FifthSection id="section5">
+        <TitleWrapper>
+          <Title>특수 청소</Title>
+          <SubTitle>Specialized Cleaning Service</SubTitle>
+        </TitleWrapper>
+        <ExWrapper>
+          <DescriptionBox>
+            <DesTitle>보이지 않는 위험까지, 안전하게</DesTitle>
+            <DesText>
+              고독사, 화재, 오염된 공간 등
+              <br />
+              일반 청소로는 해결할 수 없는 특수
+              <br />
+              상황에 대응하는 전문 청소입니다.
+              <br />
+              <br />
+              방역, 소독, 폐기물 처리 등
+              <br />
+              법적 절차와 안전 기준을 준수하여
+              <br /> 철저하고 정중하게 작업을 진행합니다.
+            </DesText>
+          </DescriptionBox>
+          <ImageSlider images={[ex11, ex12, ex13]} />
+        </ExWrapper>
+      </FifthSection>
     </Section>
   );
 };

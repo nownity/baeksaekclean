@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { useState } from "react";
-import { FiChevronDown } from "react-icons/fi"; // 👈 추천 아이콘
+import { FiChevronDown } from "react-icons/fi";
 
 const blinkDown = keyframes`
   0%, 100% {
