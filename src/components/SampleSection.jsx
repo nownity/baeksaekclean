@@ -76,10 +76,16 @@ const Title = styled.div`
   transition: color 0.3s ease-in-out;
 `;
 
+const GrayText = styled.span`
+  color: ${({ theme }) => theme.textGray};
+  transition: color 0.3s ease-in-out;
+  z-index: 1;
+`;
+
 const SubTitle = styled.div`
   font-size: 16px;
   font-weight: 500;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.textGray};
   transition: color 0.3s ease-in-out;
 `;
 
@@ -208,7 +214,9 @@ const SampleSection = () => {
 
       <FirstSection id="section1">
         <TitleWrapper>
-          <Title>입주 · 거주 청소</Title>
+          <Title>
+            입주 · 거주 <GrayText>청소</GrayText>
+          </Title>
           <SubTitle>cleaning of the house</SubTitle>
         </TitleWrapper>
         <ExWrapper>
@@ -240,7 +248,9 @@ const SampleSection = () => {
 
       <SecondSection id="section2">
         <TitleWrapper>
-          <Title>이사 청소</Title>
+          <Title>
+            이사 <GrayText>청소</GrayText>
+          </Title>
           <SubTitle>Moving Day Cleaning</SubTitle>
         </TitleWrapper>
         <ExWrapper>
@@ -267,7 +277,9 @@ const SampleSection = () => {
 
       <ThirdSection id="section3">
         <TitleWrapper>
-          <Title>상가 청소</Title>
+          <Title>
+            상가 <GrayText>청소</GrayText>
+          </Title>
           <SubTitle>Commercial Space Cleaning</SubTitle>
         </TitleWrapper>
         <ExWrapper>
@@ -293,7 +305,9 @@ const SampleSection = () => {
 
       <FourthSection id="section4">
         <TitleWrapper>
-          <Title>준공 청소</Title>
+          <Title>
+            준공 <GrayText>청소</GrayText>
+          </Title>
           <SubTitle>Post-Construction Cleaning</SubTitle>
         </TitleWrapper>
         <ExWrapper>
@@ -320,7 +334,9 @@ const SampleSection = () => {
 
       <FifthSection id="section5">
         <TitleWrapper>
-          <Title>특수 청소</Title>
+          <Title>
+            특수 <GrayText>청소</GrayText>
+          </Title>
           <SubTitle>Specialized Cleaning Service</SubTitle>
         </TitleWrapper>
         <ExWrapper>
