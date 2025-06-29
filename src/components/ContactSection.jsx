@@ -267,6 +267,34 @@ const ContactSection = () => {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
+    if (name === "phone") {
+      let digits = value.replace(/\D/g, "");
+
+      if (digits.length <= 3) {
+      } else if (digits.length <= 6) {
+        digits = digits.replace(/(\d{3})(\d+)/, "$1-$2");
+      } else if (digits.length === 9) {
+        digits = digits.replace(/(\d{2})(\d{3})(\d{4})/, "$1-$2-$3");
+      } else if (digits.length === 10 && digits.startsWith("02")) {
+        digits = digits.replace(/(\d{2})(\d{4})(\d{4})/, "$1-$2-$3");
+      } else if (digits.length <= 10) {
+        digits = digits.replace(/(\d{3})(\d{3})(\d+)/, "$1-$2-$3");
+      } else {
+        digits = digits.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3");
+      }
+
+      setFormData((prev) => ({ ...prev, phone: digits }));
+
+      if (errors.phone && digits.trim() !== "") {
+        setErrors((prev) => {
+          const updated = { ...prev };
+          delete updated.phone;
+          return updated;
+        });
+      }
+
+      return;
+    }
     if (type === "checkbox" && name === "topic") {
       setFormData((prev) => {
         const updatedTopics = checked
@@ -302,6 +330,7 @@ const ContactSection = () => {
     if (!data.phone.trim()) newErrors.phone = true;
     if (!data.area.trim()) newErrors.area = true;
     if (data.topic.length === 0) newErrors.topic = true;
+
     return newErrors;
   };
 
@@ -409,7 +438,7 @@ const ContactSection = () => {
             onChange={handleChange}
             ref={fieldRefs.phone}
             isError={errors.phone}
-            placeholder="ex) 010-0000-0000"
+            placeholder="숫자만 입력해주세요"
           />
           {errors.phone && <ErrorMsg>필수 입력 사항입니다</ErrorMsg>}
         </FieldWrap>
@@ -488,6 +517,11 @@ const ContactSection = () => {
 
               return <span className={className}>{day}</span>;
             }}
+          />
+          <input
+            type="hidden"
+            name="preferredDate"
+            value={formData.preferredDate}
           />
         </FieldWrap>
 
