@@ -41,6 +41,10 @@ const SliderWrapper = styled.div`
   .swiper-pagination-bullet-active {
     background: black;
   }
+
+  @media (max-width: 768px) {
+    max-width: 340px;
+  }
 `;
 
 const Image = styled.img`

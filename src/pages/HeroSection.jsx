@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import main1 from "../images/main1.jpg";
-import ContactBtn from "./ContactBtn";
+import ContactBtn from "../components/ContactBtn";
 
 const Section = styled.section`
   width: 100%;
