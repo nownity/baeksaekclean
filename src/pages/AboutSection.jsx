@@ -137,6 +137,7 @@ const LinkBtn = styled.a`
   height: 50px;
   background-color: ${({ theme }) => theme.text};
   color: ${({ theme }) => theme.textWhite};
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
@@ -144,7 +145,6 @@ const LinkBtn = styled.a`
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 
   &:hover {
     color: #a39da8;

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import sample1 from "../images/sample1.jpg";
 import ImageSlider from "../components/ImageSlider";
 import { FiChevronDown } from "react-icons/fi";
 import ex11 from "../images/ex1-1.jpg";
@@ -19,12 +18,71 @@ const Section = styled.section`
   flex-direction: column;
 `;
 
-const ImageSection = styled.img`
+const ImageSection = styled.div`
   width: 100%;
   height: auto;
-  aspect-ratio: 1920 / 400;
-  object-fit: contain;
+  aspect-ratio: 1920 / 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: ${({ theme }) => theme.aboutbg};
+  transition: background-color 0.3s ease-in-out;
   @media (max-width: 768px) {
+  }
+`;
+
+const BtnTitleWrapper = styled.div`
+  width: 100%;
+  height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  @media (max-width: 768px) {
+    height: 150px;
+    margin-top: auto;
+  }
+`;
+
+const BtnTitle = styled.div`
+  font-size: 40px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.text};
+  transition: color 0.3s ease-in-out;
+  @media (max-width: 768px) {
+    font-size: 30px;
+  }
+`;
+
+const BtnGrayText = styled.span`
+  color: ${({ theme }) => theme.textGray};
+  transition: color 0.3s ease-in-out;
+`;
+
+const BtnSubTitle = styled.div`
+  font-size: 16px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.textGray};
+  transition: color 0.3s ease-in-out;
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+`;
+
+const BtnWrapper = styled.div`
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  @media (max-width: 768px) {
+    height: 150px;
+    margin-top: auto;
+  }
+  @media (max-width: 450px) {
+    height: 100px;
   }
 `;
 
@@ -37,14 +95,11 @@ const BtnSection = styled.div`
   gap: 0.5vw;
   padding: 0.5vw;
   border-radius: 12px;
-  position: relative;
-  transform: translateY(-60%);
-  z-index: 10;
   @media (max-width: 1200px) {
     width: 80%;
   }
   @media (max-width: 768px) {
-    width: 100%;
+    width: 95%;
     transform: translateY(0%);
   }
 `;
@@ -52,7 +107,9 @@ const BtnSection = styled.div`
 const NavBtn = styled.div`
   width: 287px;
   aspect-ratio: 500 / 300;
-  background: white;
+  background-color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.textWhite};
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
   border: 1px solid #000000;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -73,12 +130,16 @@ const NavBtn = styled.div`
     aspect-ratio: 600 / 400;
   }
   @media (max-width: 768px) {
+    font-size: 15px;
     .pc-space {
       display: none;
     }
     .mobile-br {
       display: block;
     }
+  }
+  @media (max-width: 450px) {
+    font-size: 13px;
   }
 `;
 
@@ -262,44 +323,48 @@ const SampleSection = () => {
   };
   return (
     <Section>
-      <ImageSection
-        src={sample1}
-        alt="배경 이미지"
-        loading="eager"
-        decoding="async"
-      />
-      <BtnSection>
-        <NavBtn onClick={() => scrollToSection("section1")}>
-          입주 · 거주
-          <span className="pc-space">&nbsp;</span>
-          <br className="mobile-br" />
-          청소
-        </NavBtn>
-        <NavBtn onClick={() => scrollToSection("section2")}>
-          이사
-          <span className="pc-space">&nbsp;</span>
-          <br className="mobile-br" />
-          청소
-        </NavBtn>
-        <NavBtn onClick={() => scrollToSection("section3")}>
-          상가
-          <span className="pc-space">&nbsp;</span>
-          <br className="mobile-br" />
-          청소
-        </NavBtn>
-        <NavBtn onClick={() => scrollToSection("section4")}>
-          준공
-          <span className="pc-space">&nbsp;</span>
-          <br className="mobile-br" />
-          청소
-        </NavBtn>
-        <NavBtn onClick={() => scrollToSection("section5")}>
-          특수
-          <span className="pc-space">&nbsp;</span>
-          <br className="mobile-br" />
-          청소
-        </NavBtn>
-      </BtnSection>
+      <ImageSection>
+        <BtnTitleWrapper>
+          <BtnTitle>
+            청소 <BtnGrayText>사례</BtnGrayText>
+          </BtnTitle>
+          <BtnSubTitle>아래 청소 업무를 클릭하면 이동합니다.</BtnSubTitle>
+        </BtnTitleWrapper>
+        <BtnWrapper>
+          <BtnSection>
+            <NavBtn onClick={() => scrollToSection("section1")}>
+              입주 · 거주
+              <span className="pc-space">&nbsp;</span>
+              <br className="mobile-br" />
+              청소
+            </NavBtn>
+            <NavBtn onClick={() => scrollToSection("section2")}>
+              이사
+              <span className="pc-space">&nbsp;</span>
+              <br className="mobile-br" />
+              청소
+            </NavBtn>
+            <NavBtn onClick={() => scrollToSection("section3")}>
+              상가
+              <span className="pc-space">&nbsp;</span>
+              <br className="mobile-br" />
+              청소
+            </NavBtn>
+            <NavBtn onClick={() => scrollToSection("section4")}>
+              준공
+              <span className="pc-space">&nbsp;</span>
+              <br className="mobile-br" />
+              청소
+            </NavBtn>
+            <NavBtn onClick={() => scrollToSection("section5")}>
+              특수
+              <span className="pc-space">&nbsp;</span>
+              <br className="mobile-br" />
+              청소
+            </NavBtn>
+          </BtnSection>
+        </BtnWrapper>
+      </ImageSection>
 
       <FirstSection id="section1">
         <TitleWrapper>
