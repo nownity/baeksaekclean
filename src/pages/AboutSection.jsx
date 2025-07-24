@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import main2 from "../images/main2.jpg";
+import main from "../images/main3.JPEG";
+import useScrollFadeIn from "../hooks/useScrollFadIn";
 
 const Section = styled.section`
   width: 100%;
@@ -163,7 +164,7 @@ const ImageWrapper = styled.div`
   justify-content: center;
   background-color: black;
   border-radius: 8px;
-  background-image: url(${main2});
+  background-image: url(${main});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -187,20 +188,32 @@ const Overlay = styled.div`
 `;
 
 const AboutSection = () => {
+  const fadeInAbout = useScrollFadeIn("up", 0.8, 0);
+  const fadeInTitle = useScrollFadeIn("up", 0.8, 0.5);
+  const fadeInText = useScrollFadeIn("up", 0.8, 0.5);
+  const fadeInText2 = useScrollFadeIn("up", 0.8, 0.5);
+  const fadeInText3 = useScrollFadeIn("up", 0.8, 0.5);
+  const fadeInBtn = useScrollFadeIn("up", 0.8, 0.5);
   return (
     <Section>
       <HalfSection>
-        <Title>ABOUT</Title>
-        <SubTitle>
+        <Title {...fadeInAbout}>ABOUT</Title>
+        <SubTitle {...fadeInTitle}>
           <WhiteText>백색</WhiteText>클린
         </SubTitle>
-        <Text>안녕하세요 종합 청소 전문 업체 백색클린 입니다.</Text>
-        <SubText>오늘도, 청소 때문에 고민하고 계신가요?</SubText>
-        <Text>백색클린은 입주 / 거주 / 이사 / 상가 / 준공 / 특수청소까지</Text>
-        <SubText>모두 한 번에 해결해드립니다.</SubText>
-        <Text>믿을 수 있는 청소 전문가가</Text>
-        <SubText>당신의 공간을 새하얗게 바꿔드립니다.</SubText>
-        <BtnWrapper>
+        <Text {...fadeInText}>
+          안녕하세요 종합 청소 전문 업체 백색클린 입니다.
+        </Text>
+        <SubText {...fadeInText}>
+          오늘도, 청소 때문에 고민하고 계신가요?
+        </SubText>
+        <Text {...fadeInText2}>
+          백색클린은 입주 / 거주 / 이사 / 상가 / 준공 / 특수청소까지
+        </Text>
+        <SubText {...fadeInText2}>모두 한 번에 해결해드립니다.</SubText>
+        <Text {...fadeInText3}>믿을 수 있는 청소 전문가가</Text>
+        <SubText {...fadeInText3}>당신의 공간을 새하얗게 바꿔드립니다.</SubText>
+        <BtnWrapper {...fadeInBtn}>
           <LinkBtn>인스타그램</LinkBtn>
           <LinkBtn>블로그</LinkBtn>
           <LinkBtn>카카오톡</LinkBtn>

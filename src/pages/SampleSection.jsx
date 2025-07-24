@@ -7,6 +7,17 @@ import ex13 from "../images/ex1-3.jpg";
 import ex21 from "../images/ex2-1.jpg";
 import ex22 from "../images/ex2-2.jpg";
 import ex23 from "../images/ex2-3.jpg";
+import ip1 from "../images/ip1.JPEG";
+import ip2 from "../images/ip2.JPEG";
+import ip3 from "../images/ip3.JPEG";
+import is1 from "../images/is1.JPEG";
+import is2 from "../images/is2.JPEG";
+import is3 from "../images/is3.JPEG";
+import is4 from "../images/is4.JPEG";
+import jg1 from "../images/jg1.JPEG";
+import jg2 from "../images/jg2.JPEG";
+import jg3 from "../images/jg3.JPEG";
+import useScrollFadeIn from "../hooks/useScrollFadIn";
 
 const Section = styled.section`
   width: 100%;
@@ -24,7 +35,7 @@ const ImageSection = styled.div`
   aspect-ratio: 1920 / 500;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
   background-color: ${({ theme }) => theme.aboutbg};
   transition: background-color 0.3s ease-in-out;
@@ -87,12 +98,12 @@ const BtnWrapper = styled.div`
 `;
 
 const BtnSection = styled.div`
-  width: 60%;
+  width: 70%;
   height: auto;
   aspect-ratio: 1550 / 300;
   display: flex;
   justify-content: center;
-  gap: 0.5vw;
+  gap: 1vw;
   padding: 0.5vw;
   border-radius: 12px;
   @media (max-width: 1200px) {
@@ -106,10 +117,13 @@ const BtnSection = styled.div`
 
 const NavBtn = styled.div`
   width: 287px;
-  aspect-ratio: 500 / 300;
-  background-color: ${({ theme }) => theme.text};
+  aspect-ratio: 500 / 500;
+  background-image: ${({ $imageurl }) => `url(${$imageurl})`};
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   color: ${({ theme }) => theme.textWhite};
-  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out;
   border: 1px solid #000000;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -315,6 +329,30 @@ const DownBtn = styled.button`
 `;
 
 const SampleSection = () => {
+  const fadeInTitle = useScrollFadeIn("up", 0.8, 0);
+  const fadeInSubTitle = useScrollFadeIn("up", 0.8, 0.3);
+  const fadeInBtn = useScrollFadeIn("up", 0.8, 0.3);
+  const fadeIn11 = useScrollFadeIn("up", 0.8, 0);
+  const fadeIn12 = useScrollFadeIn("up", 0.8, 0.3);
+  const fadeIn13 = useScrollFadeIn("up", 0.8, 0.5);
+  const fadeIn14 = useScrollFadeIn("up", 0.8, 0.5);
+  const fadeIn21 = useScrollFadeIn("up", 0.8, 0);
+  const fadeIn22 = useScrollFadeIn("up", 0.8, 0.3);
+  const fadeIn23 = useScrollFadeIn("up", 0.8, 0.5);
+  const fadeIn24 = useScrollFadeIn("up", 0.8, 0.5);
+  const fadeIn31 = useScrollFadeIn("up", 0.8, 0);
+  const fadeIn32 = useScrollFadeIn("up", 0.8, 0.3);
+  const fadeIn33 = useScrollFadeIn("up", 0.8, 0.5);
+  const fadeIn34 = useScrollFadeIn("up", 0.8, 0.5);
+  const fadeIn41 = useScrollFadeIn("up", 0.8, 0);
+  const fadeIn42 = useScrollFadeIn("up", 0.8, 0.3);
+  const fadeIn43 = useScrollFadeIn("up", 0.8, 0.5);
+  const fadeIn44 = useScrollFadeIn("up", 0.8, 0.5);
+  const fadeIn51 = useScrollFadeIn("up", 0.8, 0);
+  const fadeIn52 = useScrollFadeIn("up", 0.8, 0.3);
+  const fadeIn53 = useScrollFadeIn("up", 0.8, 0.5);
+  const fadeIn54 = useScrollFadeIn("up", 0.8, 0.5);
+
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) {
@@ -325,38 +363,46 @@ const SampleSection = () => {
     <Section>
       <ImageSection>
         <BtnTitleWrapper>
-          <BtnTitle>
+          <BtnTitle {...fadeInTitle}>
             청소 <BtnGrayText>사례</BtnGrayText>
           </BtnTitle>
-          <BtnSubTitle>아래 청소 업무를 클릭하면 이동합니다.</BtnSubTitle>
+          <BtnSubTitle {...fadeInSubTitle}>
+            아래 청소 업무를 클릭하면 이동합니다.
+          </BtnSubTitle>
         </BtnTitleWrapper>
         <BtnWrapper>
-          <BtnSection>
-            <NavBtn onClick={() => scrollToSection("section1")}>
+          <BtnSection {...fadeInBtn}>
+            <NavBtn onClick={() => scrollToSection("section1")} $imageurl={ip2}>
               입주 · 거주
               <span className="pc-space">&nbsp;</span>
               <br className="mobile-br" />
               청소
             </NavBtn>
-            <NavBtn onClick={() => scrollToSection("section2")}>
+            <NavBtn onClick={() => scrollToSection("section2")} $imageurl={is3}>
               이사
               <span className="pc-space">&nbsp;</span>
               <br className="mobile-br" />
               청소
             </NavBtn>
-            <NavBtn onClick={() => scrollToSection("section3")}>
+            <NavBtn
+              onClick={() => scrollToSection("section3")}
+              $imageurl={ex13}
+            >
               상가
               <span className="pc-space">&nbsp;</span>
               <br className="mobile-br" />
               청소
             </NavBtn>
-            <NavBtn onClick={() => scrollToSection("section4")}>
+            <NavBtn onClick={() => scrollToSection("section4")} $imageurl={jg2}>
               준공
               <span className="pc-space">&nbsp;</span>
               <br className="mobile-br" />
               청소
             </NavBtn>
-            <NavBtn onClick={() => scrollToSection("section5")}>
+            <NavBtn
+              onClick={() => scrollToSection("section5")}
+              $imageurl={ex21}
+            >
               특수
               <span className="pc-space">&nbsp;</span>
               <br className="mobile-br" />
@@ -368,13 +414,13 @@ const SampleSection = () => {
 
       <FirstSection id="section1">
         <TitleWrapper>
-          <Title>
+          <Title {...fadeIn11}>
             입주 · 거주 <GrayText>청소</GrayText>
           </Title>
-          <SubTitle>cleaning of the house</SubTitle>
+          <SubTitle {...fadeIn12}>cleaning of the house</SubTitle>
         </TitleWrapper>
         <ExWrapper>
-          <DescriptionBox>
+          <DescriptionBox {...fadeIn13}>
             <DesTitle>입주 전, 새집의 첫인상을 책임집니다</DesTitle>
             <DesText>
               입주 · 거주 청소는 새로 이사 들어가기 전, <br />
@@ -390,7 +436,9 @@ const SampleSection = () => {
               <br /> 함께 진행되어 안심하고 거주하실 수 있습니다.
             </DesText>
           </DescriptionBox>
-          <ImageSlider images={[ex11, ex12, ex13]} />
+          <SliderWrapper {...fadeIn14}>
+            <ImageSlider images={[ip1, ip2, ip3]} />
+          </SliderWrapper>
         </ExWrapper>
         <DownBtn onClick={() => scrollToSection("section2")}>
           <FiChevronDown />
@@ -399,16 +447,16 @@ const SampleSection = () => {
 
       <SecondSection id="section2">
         <TitleWrapper>
-          <Title>
+          <Title {...fadeIn21}>
             이사 <GrayText>청소</GrayText>
           </Title>
-          <SubTitle>Moving Day Cleaning</SubTitle>
+          <SubTitle {...fadeIn22}>Moving Day Cleaning</SubTitle>
         </TitleWrapper>
         <ExWrapper>
-          <SliderWrapper>
-            <ImageSlider images={[ex21, ex22, ex23]} />
+          <SliderWrapper {...fadeIn23}>
+            <ImageSlider images={[is1, is2, is3, is4]} />
           </SliderWrapper>
-          <DescriptionBox>
+          <DescriptionBox {...fadeIn24}>
             <DesTitleR>완벽한 이사, 깔끔한 시작으로부터</DesTitleR>
             <DesTextR>
               이사 전후의 청소는 단순한 정리가 아니라,
@@ -430,13 +478,13 @@ const SampleSection = () => {
 
       <ThirdSection id="section3">
         <TitleWrapper>
-          <Title>
+          <Title {...fadeIn31}>
             상가 <GrayText>청소</GrayText>
           </Title>
-          <SubTitle>Commercial Space Cleaning</SubTitle>
+          <SubTitle {...fadeIn32}>Commercial Space Cleaning</SubTitle>
         </TitleWrapper>
         <ExWrapper>
-          <DescriptionBox>
+          <DescriptionBox {...fadeIn33}>
             <DesTitle>첫인상은 공간이 말합니다</DesTitle>
             <DesText>
               매장, 사무실, 카페 등 고객과 직원이 오가는 공간은
@@ -449,7 +497,9 @@ const SampleSection = () => {
               <br /> 고객에게 신뢰를 주는 공간으로 만들어드립니다.
             </DesText>
           </DescriptionBox>
-          <ImageSlider images={[ex11, ex12, ex13]} />
+          <SliderWrapper {...fadeIn34}>
+            <ImageSlider images={[ex11, ex12, ex13]} />
+          </SliderWrapper>
         </ExWrapper>
         <DownBtn onClick={() => scrollToSection("section4")}>
           <FiChevronDown />
@@ -458,14 +508,16 @@ const SampleSection = () => {
 
       <FourthSection id="section4">
         <TitleWrapper>
-          <Title>
+          <Title {...fadeIn41}>
             준공 <GrayText>청소</GrayText>
           </Title>
-          <SubTitle>Post-Construction Cleaning</SubTitle>
+          <SubTitle {...fadeIn42}>Post-Construction Cleaning</SubTitle>
         </TitleWrapper>
         <ExWrapper>
-          <ImageSlider images={[ex11, ex12, ex13]} />
-          <DescriptionBox>
+          <SliderWrapper {...fadeIn43}>
+            <ImageSlider images={[jg1, jg2, jg3]} />
+          </SliderWrapper>
+          <DescriptionBox {...fadeIn44}>
             <DesTitleR>완공 후 마지막 터치, 청결</DesTitleR>
             <DesTextR>
               공사 후 남은 먼지, 시멘트가루, 도장자국 등은
@@ -487,13 +539,13 @@ const SampleSection = () => {
 
       <FifthSection id="section5">
         <TitleWrapper>
-          <Title>
+          <Title {...fadeIn51}>
             특수 <GrayText>청소</GrayText>
           </Title>
-          <SubTitle>Specialized Cleaning Service</SubTitle>
+          <SubTitle {...fadeIn52}>Specialized Cleaning Service</SubTitle>
         </TitleWrapper>
         <ExWrapper>
-          <DescriptionBox>
+          <DescriptionBox {...fadeIn53}>
             <DesTitle>보이지 않는 위험까지, 안전하게</DesTitle>
             <DesText>
               고독사, 화재, 오염된 공간 등
@@ -509,7 +561,9 @@ const SampleSection = () => {
               <br /> 철저하고 정중하게 작업을 진행합니다.
             </DesText>
           </DescriptionBox>
-          <ImageSlider images={[ex11, ex12, ex13]} />
+          <SliderWrapper {...fadeIn54}>
+            <ImageSlider images={[ex21, ex22, ex23]} />
+          </SliderWrapper>
         </ExWrapper>
       </FifthSection>
     </Section>

@@ -15,6 +15,9 @@ const Section = styled.section`
   flex-direction: column;
   background-color: ${({ theme }) => theme.herobg};
   transition: background-color 0.3s ease-in-out;
+  @media (max-width: 768px) {
+    height: 1400px;
+  }
 `;
 
 const TitleWrapper = styled.div`

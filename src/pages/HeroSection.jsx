@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import main1 from "../images/main1.jpg";
 import ContactBtn from "../components/ContactBtn";
+import useScrollFadeIn from "../hooks/useScrollFadIn";
 
 const Section = styled.section`
   width: 100%;
@@ -80,6 +81,9 @@ const BtnSection = styled.section`
 `;
 
 const HeroSection = ({ sectionRefs }) => {
+  const fadeInTitle = useScrollFadeIn("up", 1, 0);
+  const fadeInSubTitle = useScrollFadeIn("up", 1, 0.8);
+  const fadeInBtn = useScrollFadeIn("up", 1, 1.5);
   const scrollToSection = (id) => {
     sectionRefs[id]?.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -88,13 +92,15 @@ const HeroSection = ({ sectionRefs }) => {
     <Section>
       <Overlay />
       <TextSection>
-        <Title>
+        <Title {...fadeInTitle}>
           청소는 역시 <WhiteText>백색</WhiteText>클린
         </Title>
-        <SubTitle>믿을 수 있는 청소 전문가들이</SubTitle>
-        <SubTitle>당신의 공간을 새하얗게 바꿔드립니다.</SubTitle>
+        <SubTitle {...fadeInSubTitle}>믿을 수 있는 청소 전문가들이</SubTitle>
+        <SubTitle {...fadeInSubTitle}>
+          당신의 공간을 새하얗게 바꿔드립니다.
+        </SubTitle>
       </TextSection>
-      <BtnSection>
+      <BtnSection {...fadeInBtn}>
         <ContactBtn onClick={() => scrollToSection("contact")}>
           간편하게 신청하기
         </ContactBtn>

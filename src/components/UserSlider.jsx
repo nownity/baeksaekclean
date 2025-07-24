@@ -6,11 +6,13 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const SliderWrapper = styled.div`
-  width: 100%;
+  width: 95%;
   overflow: hidden;
 
   .swiper-pagination {
     padding: 10px;
+    margin-top: 15px; /* 🔽 슬라이드 아래로 20px 띄움 */
+    position: relative; /* 기본은 relative가 더 안정적 */
   }
   .swiper-pagination-bullet {
     background: black; // 페이지네이션 점 색상 변경
@@ -40,12 +42,12 @@ const SliderWrapper = styled.div`
   }
 
   @media (max-width: 768px) {
-    max-width: 340px;
+    max-width: 400px;
   }
 `;
 
 const SwiperWrapper = styled.div`
-  width: 90%;
+  width: 100%;
   border-radius: 12px;
   background-color: #f1f1f1;
   display: flex;
@@ -58,7 +60,8 @@ const Image = styled.img`
   width: 100%;
   aspect-ratio: 2 / 1;
   object-fit: cover;
-  border-radius: 12px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 `;
 
 const ReviewContent = styled.div`
@@ -88,7 +91,21 @@ const UserSlider = ({ reviews = [] }) => {
         pagination={{ clickable: true }}
         autoplay={{ delay: 6000 }}
         loop={true}
-        slidesPerView={3} // 🔥 한 번에 3개 보여줌
+        slidesPerView={3}
+        breakpoints={{
+          0: {
+            slidesPerView: 1,
+            spaceBetween: 12, // 모바일 간격
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 16, // 태블릿 간격
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 24, // PC 간격
+          },
+        }}
       >
         {reviews.map((item, idx) => (
           <SwiperSlide key={idx}>
