@@ -442,11 +442,7 @@ const SampleSection = () => {
               <br /> 함께 진행되어 안심하고 거주하실 수 있습니다.
             </DesText>
           </DescriptionBox>
-          <SliderWrapper2>
-            <div {...fadeIn14}>
-              <ImageSlider images={[ip1, ip2, ip3]} />
-            </div>
-          </SliderWrapper2>
+          <ImageSlider images={[ip1, ip2, ip3]} />
         </ExWrapper>
         <DownBtn onClick={() => scrollToSection("section2")}>
           <FiChevronDown />
