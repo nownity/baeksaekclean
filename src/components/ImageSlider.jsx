@@ -44,6 +44,10 @@ const SliderWrapper = styled.div`
 
   @media (max-width: 768px) {
     max-width: 340px;
+    .swiper-pagination-bullet {
+      width: 11px;
+      height: 11px;
+    }
   }
 `;
 
@@ -54,6 +58,13 @@ const Image = styled.img`
 `;
 
 const ImageSlider = ({ images = [] }) => {
+  if (images.length < 2) {
+    return images.length === 1 ? (
+      <SliderWrapper>
+        <Image src={images[0]} alt="single-slide" loading="lazy" />
+      </SliderWrapper>
+    ) : null;
+  }
   return (
     <SliderWrapper>
       <Swiper

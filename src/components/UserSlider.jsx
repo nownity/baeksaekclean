@@ -43,6 +43,10 @@ const SliderWrapper = styled.div`
 
   @media (max-width: 768px) {
     max-width: 400px;
+    .swiper-pagination-bullet {
+      width: 10px;
+      height: 10px;
+    }
   }
 `;
 
@@ -82,7 +86,17 @@ const UserReview = styled.div`
   line-height: 1.5;
 `;
 
+const getSlidesPerView = () => {
+  const width = window.innerWidth;
+  if (width < 768) return 1;
+  if (width < 1024) return 2;
+  return 3;
+};
+
 const UserSlider = ({ reviews = [] }) => {
+  const slidesPerView = getSlidesPerView();
+  const isLoop = reviews.length > slidesPerView;
+
   return (
     <SliderWrapper>
       <Swiper
@@ -90,20 +104,19 @@ const UserSlider = ({ reviews = [] }) => {
         navigation
         pagination={{ clickable: true }}
         autoplay={{ delay: 6000 }}
-        loop={true}
-        slidesPerView={3}
+        loop={isLoop}
         breakpoints={{
           0: {
             slidesPerView: 1,
-            spaceBetween: 12, // 모바일 간격
+            spaceBetween: 12,
           },
           768: {
             slidesPerView: 2,
-            spaceBetween: 16, // 태블릿 간격
+            spaceBetween: 16,
           },
           1024: {
             slidesPerView: 3,
-            spaceBetween: 24, // PC 간격
+            spaceBetween: 24,
           },
         }}
       >

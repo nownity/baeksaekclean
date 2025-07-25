@@ -328,6 +328,11 @@ const DownBtn = styled.button`
   }
 `;
 
+const TopSection = styled.div`
+  width: 100%;
+  height: 70px;
+`;
+
 const SampleSection = () => {
   const fadeInTitle = useScrollFadeIn("up", 0.8, 0);
   const fadeInSubTitle = useScrollFadeIn("up", 0.8, 0.3);
@@ -361,6 +366,7 @@ const SampleSection = () => {
   };
   return (
     <Section>
+      <TopSection />
       <ImageSection>
         <BtnTitleWrapper>
           <BtnTitle {...fadeInTitle}>
