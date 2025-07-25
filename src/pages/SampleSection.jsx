@@ -51,8 +51,8 @@ const BtnTitleWrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   @media (max-width: 768px) {
-    height: 150px;
-    margin-top: auto;
+    height: auto;
+    aspect-ratio: 1200 / 250;
   }
 `;
 
@@ -89,11 +89,8 @@ const BtnWrapper = styled.div`
   justify-content: flex-start;
   flex-direction: column;
   @media (max-width: 768px) {
-    height: 150px;
-    margin-top: auto;
-  }
-  @media (max-width: 450px) {
-    height: 100px;
+    height: auto;
+    aspect-ratio: 1200 / 250;
   }
 `;
 
