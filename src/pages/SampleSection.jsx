@@ -425,8 +425,8 @@ const SampleSection = () => {
           </Title>
           <SubTitle {...fadeIn12}>cleaning of the house</SubTitle>
         </TitleWrapper>
-        <ExWrapper>
-          <DescriptionBox {...fadeIn13}>
+        <ExWrapper {...fadeIn13}>
+          <DescriptionBox>
             <DesTitle>입주 전, 새집의 첫인상을 책임집니다</DesTitle>
             <DesText>
               입주 · 거주 청소는 새로 이사 들어가기 전, <br />
@@ -442,9 +442,7 @@ const SampleSection = () => {
               <br /> 함께 진행되어 안심하고 거주하실 수 있습니다.
             </DesText>
           </DescriptionBox>
-          <div {...fadeIn14}>
-            <ImageSlider images={[ip1, ip2, ip3]} />
-          </div>
+          <ImageSlider images={[ip1, ip2, ip3]} />
         </ExWrapper>
         <DownBtn onClick={() => scrollToSection("section2")}>
           <FiChevronDown />
