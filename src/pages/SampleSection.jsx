@@ -52,7 +52,7 @@ const BtnTitleWrapper = styled.div`
   flex-direction: column;
   @media (max-width: 768px) {
     height: auto;
-    aspect-ratio: 1200 / 250;
+    aspect-ratio: 1200 / 350;
   }
 `;
 
@@ -90,7 +90,7 @@ const BtnWrapper = styled.div`
   flex-direction: column;
   @media (max-width: 768px) {
     height: auto;
-    aspect-ratio: 1200 / 250;
+    aspect-ratio: 1200 / 300;
   }
 `;
 
