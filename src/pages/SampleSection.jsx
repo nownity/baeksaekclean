@@ -456,11 +456,11 @@ const SampleSection = () => {
           </Title>
           <SubTitle {...fadeIn22}>Moving Day Cleaning</SubTitle>
         </TitleWrapper>
-        <ExWrapper>
-          <SliderWrapper {...fadeIn23}>
+        <ExWrapper {...fadeIn23}>
+          <SliderWrapper>
             <ImageSlider images={[is1, is2, is3, is4]} />
           </SliderWrapper>
-          <DescriptionBox {...fadeIn24}>
+          <DescriptionBox>
             <DesTitleR>완벽한 이사, 깔끔한 시작으로부터</DesTitleR>
             <DesTextR>
               이사 전후의 청소는 단순한 정리가 아니라,
