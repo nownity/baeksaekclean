@@ -157,14 +157,6 @@ const NavBtn = styled.div`
   }
 `;
 
-const FirstSection = styled.div`
-  width: 100%;
-  @media (max-width: 768px) {
-    font-size: 14px;
-    aspect-ratio: 1 / 2;
-  }
-`;
-
 const TitleWrapper = styled.div`
   width: 100%;
   height: 200px;
@@ -276,6 +268,10 @@ const DesTextR = styled.div`
   @media (max-width: 768px) {
     font-size: 15px;
   }
+`;
+
+const FirstSection = styled.div`
+  width: 100%;
 `;
 
 const SecondSection = styled.div`
