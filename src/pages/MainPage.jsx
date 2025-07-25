@@ -71,7 +71,7 @@ const MainPage = ({ toggleTheme, isDarkMode }) => {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.18 }
     );
 
     [heroRef, aboutRef, sampleRef, infoRef, contactRef, footerRef].forEach(

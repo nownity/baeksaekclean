@@ -364,8 +364,9 @@ const SampleSection = () => {
       el.scrollIntoView({ behavior: "smooth" });
     }
   };
+
   return (
-    <Section>
+    <Section id="sample">
       <TopSection />
       <ImageSection>
         <BtnTitleWrapper>

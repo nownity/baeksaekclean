@@ -10,6 +10,10 @@ import useScrollFadeIn from "../hooks/useScrollFadIn";
 
 const Section = styled.section`
   width: 100%;
+`;
+
+const SectionWrap = styled.div`
+  width: 100%;
   height: 600px;
   display: flex;
   align-items: center;
@@ -87,6 +91,11 @@ const ExWrapper = styled.div`
   }
 `;
 
+const TopSection = styled.div`
+  width: 100%;
+  height: 70px;
+`;
+
 const InfoSection = () => {
   const fadeInTitle = useScrollFadeIn("up", 0.8, 0);
   const fadeInSubTitle = useScrollFadeIn("up", 0.8, 0.3);
@@ -126,15 +135,18 @@ const InfoSection = () => {
   ];
   return (
     <Section>
-      <TitleWrapper>
-        <SubTitle {...fadeInTitle}>customers messages</SubTitle>
-        <Title {...fadeInSubTitle}>
-          고객 <GrayText>후기</GrayText>
-        </Title>
-      </TitleWrapper>
-      <ExWrapper {...fadeInBtn}>
-        <UserSlider reviews={reviews} />
-      </ExWrapper>
+      <TopSection />
+      <SectionWrap>
+        <TitleWrapper>
+          <SubTitle {...fadeInTitle}>customers messages</SubTitle>
+          <Title {...fadeInSubTitle}>
+            고객 <GrayText>후기</GrayText>
+          </Title>
+        </TitleWrapper>
+        <ExWrapper {...fadeInBtn}>
+          <UserSlider reviews={reviews} />
+        </ExWrapper>
+      </SectionWrap>
     </Section>
   );
 };
