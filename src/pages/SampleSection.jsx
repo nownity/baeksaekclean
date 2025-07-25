@@ -227,6 +227,12 @@ const SliderWrapper = styled.div`
   }
 `;
 
+const SliderWrapper2 = styled.div`
+  @media (max-width: 1200px) {
+    flex: 1;
+  }
+`;
+
 const DesTitle = styled.div`
   font-size: 26px;
   font-weight: 700;
@@ -436,9 +442,9 @@ const SampleSection = () => {
               <br /> 함께 진행되어 안심하고 거주하실 수 있습니다.
             </DesText>
           </DescriptionBox>
-          <SliderWrapper {...fadeIn14}>
+          <SliderWrapper2 {...fadeIn14}>
             <ImageSlider images={[ip1, ip2, ip3]} />
-          </SliderWrapper>
+          </SliderWrapper2>
         </ExWrapper>
         <DownBtn onClick={() => scrollToSection("section2")}>
           <FiChevronDown />
@@ -497,9 +503,9 @@ const SampleSection = () => {
               <br /> 고객에게 신뢰를 주는 공간으로 만들어드립니다.
             </DesText>
           </DescriptionBox>
-          <SliderWrapper {...fadeIn34}>
+          <SliderWrapper2 {...fadeIn34}>
             <ImageSlider images={[ex11, ex12, ex13]} />
-          </SliderWrapper>
+          </SliderWrapper2>
         </ExWrapper>
         <DownBtn onClick={() => scrollToSection("section4")}>
           <FiChevronDown />
@@ -561,9 +567,9 @@ const SampleSection = () => {
               <br /> 철저하고 정중하게 작업을 진행합니다.
             </DesText>
           </DescriptionBox>
-          <SliderWrapper {...fadeIn54}>
+          <SliderWrapper2 {...fadeIn54}>
             <ImageSlider images={[ex21, ex22, ex23]} />
-          </SliderWrapper>
+          </SliderWrapper2>
         </ExWrapper>
       </FifthSection>
     </Section>
