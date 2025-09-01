@@ -93,7 +93,7 @@ const HeroSection = ({ sectionRefs }) => {
       <Overlay />
       <TextSection>
         <Title {...fadeInTitle}>
-          청소는 역시 <WhiteText>백색</WhiteText>클린
+          <WhiteText>하얗고</WhiteText> 완벽한 청소
         </Title>
         <SubTitle {...fadeInSubTitle}>믿을 수 있는 청소 전문가들이</SubTitle>
         <SubTitle {...fadeInSubTitle}>

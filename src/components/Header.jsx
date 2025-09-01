@@ -11,6 +11,7 @@ const HeaderContainer = styled.header`
   z-index: 999;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
   @media (max-width: 768px) {
     justify-content: center;
@@ -31,7 +32,7 @@ const Logo = styled.div`
 
 const Nav = styled.nav`
   display: flex;
-  width: 400px;
+  width: 600px;
   align-items: center;
   justify-content: space-around;
   @media (max-width: 768px) {
@@ -172,7 +173,7 @@ const Header = ({ currentSection, sectionRefs }) => {
   return (
     <HeaderContainer>
       <Logo onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-        백색클린
+        백엔클린
       </Logo>
 
       <Hamburger onClick={() => setMenuOpen(true)} $show={!menuOpen}>
@@ -185,31 +186,37 @@ const Header = ({ currentSection, sectionRefs }) => {
             window.scrollTo({ top: 0, behavior: "smooth" }) & setMenuOpen(false)
           }
         >
-          백색클린
+          백엔클린
         </MLogo>
+        <NavItem
+          onClick={() => scrollToSection("hero")}
+          $active={currentSection === "hero"}
+        >
+          백엔클린
+        </NavItem>
         <NavItem
           onClick={() => scrollToSection("about")}
           $active={currentSection === "about"}
         >
-          회사소개
+          청소서비스
         </NavItem>
         <NavItem
           onClick={() => scrollToSection("sample")}
           $active={currentSection === "sample"}
         >
-          청소사례
+          코팅서비스
         </NavItem>
         <NavItem
           onClick={() => scrollToSection("info")}
           $active={currentSection === "info"}
         >
-          고객후기
+          청소범위
         </NavItem>
         <NavItem
           onClick={() => scrollToSection("contact")}
           $active={currentSection === "contact"}
         >
-          문의하기
+          예약신청
         </NavItem>
         <TextPhone>010-9508-6626</TextPhone>
         <TextEmail>baeksaekclaen@gmail.com</TextEmail>

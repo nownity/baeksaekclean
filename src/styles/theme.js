@@ -20,7 +20,7 @@ export const lightTheme = {
 
 export const darkTheme = {
   mode: "dark",
-  background: "#0F0F0F",
+  background: "#000000",
   text: "#E5E5E5",
   textSub: "#b3b3b3",
   textWhite: "#111111",
@@ -28,7 +28,7 @@ export const darkTheme = {
   contactBtn: "#E5E5E5",
   headertext: "#a1a1a1",
   section: "#1C1C1E",
-  headerbg: "#0f0f0f",
+  headerbg: "#000000ff",
   herobg: "#303030",
   aboutbg: "#292929",
   footerbg: "#222",

@@ -339,11 +339,9 @@ const SampleSection = () => {
   const fadeIn11 = useScrollFadeIn("up", 0.8, 0);
   const fadeIn12 = useScrollFadeIn("up", 0.8, 0.3);
   const fadeIn13 = useScrollFadeIn("up", 0.8, 0.5);
-  const fadeIn14 = useScrollFadeIn("up", 0.8, 0.5);
   const fadeIn21 = useScrollFadeIn("up", 0.8, 0);
   const fadeIn22 = useScrollFadeIn("up", 0.8, 0.3);
   const fadeIn23 = useScrollFadeIn("up", 0.8, 0.5);
-  const fadeIn24 = useScrollFadeIn("up", 0.8, 0.5);
   const fadeIn31 = useScrollFadeIn("up", 0.8, 0);
   const fadeIn32 = useScrollFadeIn("up", 0.8, 0.3);
   const fadeIn33 = useScrollFadeIn("up", 0.8, 0.5);

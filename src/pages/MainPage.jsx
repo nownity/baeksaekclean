@@ -22,26 +22,26 @@ const MainWrapper = styled.main`
   margin-top: 70px;
 `;
 
-const ThemeToggle = styled.button`
-  position: fixed;
-  top: 19px;
-  right: 20px;
-  padding: 8px 14px;
-  background-color: transparent;
-  color: ${({ theme }) => theme.text};
-  border: 1px solid ${({ theme }) => theme.togglebtn};
-  border-radius: 8px;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  z-index: 1000;
+// const ThemeToggle = styled.button`
+//   position: fixed;
+//   top: 19px;
+//   right: 20px;
+//   padding: 8px 14px;
+//   background-color: transparent;
+//   color: ${({ theme }) => theme.text};
+//   border: 1px solid ${({ theme }) => theme.togglebtn};
+//   border-radius: 8px;
+//   transition: all 0.3s ease-in-out;
+//   cursor: pointer;
+//   z-index: 1000;
 
-  @media (max-width: 768px) {
-    right: auto;
-    top: auto;
-    left: 20px;
-    bottom: 20px;
-  }
-`;
+//   @media (max-width: 768px) {
+//     right: auto;
+//     top: auto;
+//     left: 20px;
+//     bottom: 20px;
+//   }
+// `;
 
 const MainPage = ({ toggleTheme, isDarkMode }) => {
   const [currentSection, setCurrentSection] = useState("hero");
@@ -107,9 +107,9 @@ const MainPage = ({ toggleTheme, isDarkMode }) => {
         </section>
         <Footer />
       </MainWrapper>
-      <ThemeToggle onClick={toggleTheme}>
+      {/* <ThemeToggle onClick={toggleTheme}>
         {isDarkMode ? "Light" : "Dark"}
-      </ThemeToggle>
+      </ThemeToggle> */}
     </Container>
   );
 };
