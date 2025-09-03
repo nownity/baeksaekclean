@@ -12,7 +12,7 @@ const Container = styled.main`
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: ${({ theme }) => theme.herobg};
+  background-color: ${({ theme }) => theme.background};
   transition: background-color 0.3s ease-in-out;
 `;
 

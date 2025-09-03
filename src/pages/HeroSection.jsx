@@ -5,13 +5,11 @@ import useScrollFadeIn from "../hooks/useScrollFadIn";
 
 const Section = styled.section`
   width: 100%;
-  height: 85vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  /* background-color: ${({ theme }) => theme.herobg};
-  transition: background-color 0.3s ease-in-out; */
   background-image: url(${main1});
   background-size: cover;
   background-position: center;
