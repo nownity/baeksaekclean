@@ -201,16 +201,16 @@ const Header = ({ currentSection, sectionRefs }) => {
           청소서비스
         </NavItem>
         <NavItem
-          onClick={() => scrollToSection("sample")}
-          $active={currentSection === "sample"}
-        >
-          코팅서비스
-        </NavItem>
-        <NavItem
           onClick={() => scrollToSection("info")}
           $active={currentSection === "info"}
         >
           청소범위
+        </NavItem>
+        <NavItem
+          onClick={() => scrollToSection("sample")}
+          $active={currentSection === "sample"}
+        >
+          코팅서비스
         </NavItem>
         <NavItem
           onClick={() => scrollToSection("contact")}

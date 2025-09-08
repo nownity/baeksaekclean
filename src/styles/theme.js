@@ -29,7 +29,7 @@ export const darkTheme = {
   headertext: "#a1a1a1",
   section: "#1C1C1E",
   headerbg: "#000000ff",
-  herobg: "#303030",
+  herobg: "#000000",
   aboutbg: "#292929",
   footerbg: "#222",
   scrollBar: "#919191",
