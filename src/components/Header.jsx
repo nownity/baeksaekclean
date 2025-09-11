@@ -13,19 +13,19 @@ const HeaderContainer = styled.header`
 
   height: ${({ $expandedHeight }) => `${$expandedHeight}px`};
 
-  background-color: ${({ $isExpanded }) =>
-    $isExpanded ? "#000" : "transparent"};
-  transition: height 0.22s ease, background-color 0.22s ease;
-
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+  background-color: ${({ $scrolled }) => ($scrolled ? "#fff" : "transparent")};
+  backdrop-filter: ${({ $scrolled }) =>
+    $scrolled ? "saturate(120%) blur(14px)" : "none"};
+  -webkit-backdrop-filter: ${({ $scrolled }) =>
+    $scrolled ? "saturate(120%) blur(14px)" : "none"};
+  box-shadow: ${({ $scrolled }) =>
+    $scrolled ? "0 1px 8px rgba(0,0,0,0.08)" : "none"};
   z-index: 999;
 
+  transition: height 0.22s ease, background-color 0.22s ease;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
 
   @media (max-width: 768px) {
     height: ${BASE_HEIGHT}px;
@@ -234,6 +234,7 @@ const Header = ({ currentSection, sectionRefs }) => {
   const [hoveredKey, setHoveredKey] = useState(null); // PC 호버 중인 메뉴 키
   const [isDesktop, setIsDesktop] = useState(true);
   const [canShowSubmenu, setCanShowSubmenu] = useState(false); // height 트랜지션 완료 후만 true
+  const [scrolled, setScrolled] = useState(window.scrollY > 0);
 
   const headerRef = useRef(null);
   const lastHoverRef = useRef(null); // transitionend 동기화 시 현재 대상 메뉴 추적
@@ -340,12 +341,20 @@ const Header = ({ currentSection, sectionRefs }) => {
   // 서브메뉴 표시 여부는 "현재 호버된 메뉴 & canShowSubmenu" 동시 충족 필요
   const visibleFor = (key) => isDesktop && hoveredKey === key && canShowSubmenu;
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 0); // 0보다 크면 즉시 ON
+    onScroll(); // 첫 렌더에서도 반영
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <HeaderContainer
       ref={headerRef}
       $expandedHeight={expandedHeight}
       $isExpanded={isExpanded}
       onMouseLeave={handleMouseLeave}
+      $scrolled={scrolled || hoveredKey !== null}
     >
       <TopRow>
         <Logo onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>

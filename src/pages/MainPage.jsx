@@ -19,7 +19,6 @@ const Container = styled.main`
 const MainWrapper = styled.main`
   display: flex;
   flex-direction: column;
-  margin-top: 70px;
 `;
 
 // const ThemeToggle = styled.button`

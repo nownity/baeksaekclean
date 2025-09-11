@@ -9,7 +9,7 @@ const App = () => {
   const toggleTheme = () => setIsDarkMode((prev) => !prev);
 
   return (
-    <ThemeProvider theme={isDarkMode ? lightTheme : darkTheme}>
+    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
       <GlobalStyle />
       <MainPage toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
     </ThemeProvider>
