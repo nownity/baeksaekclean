@@ -4,8 +4,6 @@ import HeroSection from "./HeroSection";
 import AboutSection from "./AboutSection";
 import SampleSection from "./SampleSection";
 import InfoSection from "./InfoSection";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import ContactSection from "./ContactSection";
 
 const Container = styled.main`
@@ -21,27 +19,6 @@ const MainWrapper = styled.main`
   flex-direction: column;
 `;
 
-// const ThemeToggle = styled.button`
-//   position: fixed;
-//   top: 19px;
-//   right: 20px;
-//   padding: 8px 14px;
-//   background-color: transparent;
-//   color: ${({ theme }) => theme.text};
-//   border: 1px solid ${({ theme }) => theme.togglebtn};
-//   border-radius: 8px;
-//   transition: all 0.3s ease-in-out;
-//   cursor: pointer;
-//   z-index: 1000;
-
-//   @media (max-width: 768px) {
-//     right: auto;
-//     top: auto;
-//     left: 20px;
-//     bottom: 20px;
-//   }
-// `;
-
 const MainPage = ({ toggleTheme, isDarkMode }) => {
   const [currentSection, setCurrentSection] = useState("hero");
 
@@ -49,66 +26,50 @@ const MainPage = ({ toggleTheme, isDarkMode }) => {
   const aboutRef = useRef(null);
   const sampleRef = useRef(null);
   const infoRef = useRef(null);
-  const footerRef = useRef(null);
   const contactRef = useRef(null);
-
-  const sectionRefs = {
-    hero: heroRef,
-    about: aboutRef,
-    sample: sampleRef,
-    info: infoRef,
-    contact: contactRef,
-    footer: footerRef,
-  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setCurrentSection(entry.target.id);
-          }
+          if (entry.isIntersecting) setCurrentSection(entry.target.id);
         });
       },
       { threshold: 0.18 }
     );
-
-    [heroRef, aboutRef, sampleRef, infoRef, contactRef, footerRef].forEach(
-      (ref) => {
-        if (ref.current) observer.observe(ref.current);
-      }
-    );
-
+    [heroRef, aboutRef, sampleRef, infoRef, contactRef].forEach((ref) => {
+      if (ref.current) observer.observe(ref.current);
+    });
     return () => observer.disconnect();
   }, []);
 
   return (
     <Container>
-      <Header currentSection={currentSection} sectionRefs={sectionRefs} />
       <MainWrapper>
-        <section id="hero" ref={sectionRefs.hero}>
-          <HeroSection
-            currentSection={currentSection}
-            sectionRefs={sectionRefs}
-          />
+        <section id="hero" ref={heroRef}>
+          <HeroSection currentSection={currentSection} />
         </section>
-        <section id="about" ref={sectionRefs.about}>
+
+        {/* “회사소개” → about */}
+        <section id="about" ref={aboutRef}>
           <AboutSection />
         </section>
-        <section id="sample" ref={sectionRefs.sample}>
+
+        {/* “청소서비스” → sample */}
+        <section id="sample" ref={sampleRef}>
           <SampleSection />
         </section>
-        <section id="info" ref={sectionRefs.info}>
+
+        {/* “코팅서비스” → info */}
+        <section id="info" ref={infoRef}>
           <InfoSection />
         </section>
-        <section id="contact" ref={sectionRefs.contact}>
+
+        {/* “청소범위” → contact */}
+        <section id="contact" ref={contactRef}>
           <ContactSection />
         </section>
-        <Footer />
       </MainWrapper>
-      {/* <ThemeToggle onClick={toggleTheme}>
-        {isDarkMode ? "Light" : "Dark"}
-      </ThemeToggle> */}
     </Container>
   );
 };

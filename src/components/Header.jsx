@@ -1,18 +1,17 @@
 import styled from "styled-components";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const BASE_HEIGHT = 70; // 상단바 고정 높이
-const SUBITEM_HEIGHT = 36; // 서브메뉴 한 줄 높이
-const SUBLIST_PADDING = 16; // 서브메뉴 위/아래 합계 여백
+const BASE_HEIGHT = 70;
+const SUBITEM_HEIGHT = 36;
+const SUBLIST_PADDING = 16;
 
 const HeaderContainer = styled.header`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-
   height: ${({ $expandedHeight }) => `${$expandedHeight}px`};
-
   background-color: ${({ $scrolled }) => ($scrolled ? "#fff" : "transparent")};
   backdrop-filter: ${({ $scrolled }) =>
     $scrolled ? "saturate(120%) blur(14px)" : "none"};
@@ -21,23 +20,27 @@ const HeaderContainer = styled.header`
   box-shadow: ${({ $scrolled }) =>
     $scrolled ? "0 1px 8px rgba(0,0,0,0.08)" : "none"};
   z-index: 999;
-
   transition: height 0.22s ease, background-color 0.22s ease;
   display: flex;
   flex-direction: column;
   align-items: stretch;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     height: ${BASE_HEIGHT}px;
     background-color: transparent;
+    align-items: flex-start;
   }
 `;
 
 const TopRow = styled.div`
   height: ${BASE_HEIGHT}px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media (min-width: 1024px) {
+    padding: 0px 100px;
+  }
 `;
 
 const Logo = styled.div`
@@ -50,7 +53,9 @@ const Logo = styled.div`
   font-size: 1.4rem;
   font-weight: bold;
   cursor: pointer;
-  margin-left: 12px;
+  @media (min-width: 1024px) {
+    margin-left: 12px;
+  }
 `;
 
 const Nav = styled.nav`
@@ -60,7 +65,7 @@ const Nav = styled.nav`
   justify-content: space-around;
   position: relative;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     flex-direction: column;
     justify-content: flex-start;
     position: fixed;
@@ -81,11 +86,13 @@ const NavItemWrap = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   height: ${BASE_HEIGHT}px;
-
-  @media (max-width: 768px) {
+  flex: 0 0 auto; /* ⬅️ 메뉴 래퍼가 늘어나지 않게 고정 */
+  @media (max-width: 1024px) {
     height: auto;
     width: 100%;
+    justify-content: center;
   }
 `;
 
@@ -100,19 +107,54 @@ const NavItem = styled.button`
   transition: transform 0.1s ease-in-out, color 0.3s ease-in-out;
   cursor: pointer;
   padding: 6px 2px;
-  min-width: 85px;
+  min-width: 85px; /* ⬅️ 기준 폭 확보(가운데 정렬 안정화) */
+  text-align: center;
 
   &:hover {
     transform: scale(1.08);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     margin-bottom: 50px;
-    width: 85%;
+    width: 80%;
     text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
+const NavItem2 = styled.button`
+  background-color: #000;
+  border: none;
+  font-size: 1rem;
+  font-weight: ${({ $active }) => ($active ? "700" : "400")};
+  color: #fff;
+  border-radius: 100px;
+  border-bottom: ${({ $active, theme }) =>
+    $active ? `2px solid ${theme.text}` : "none"};
+  transition: transform 0.1s ease-in-out, color 0.3s ease-in-out;
+  cursor: pointer;
+  padding: 6px 2px;
+  min-width: 110px;
+  &:hover {
+    transform: scale(1.08);
+  }
+
+  @media (max-width: 1024px) {
+    background: none;
+    color: ${({ $active, theme }) => ($active ? theme.text : theme.headertext)};
+    border-radius: 0px;
+    margin-bottom: 50px;
+    width: 80%;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+/* ⭐ 핵심 정렬 수정: 각 메뉴명을 기준으로 서브메뉴를 가운데 정렬 */
 const Submenu = styled.ul`
   list-style: none;
   padding: 8px 0;
@@ -120,20 +162,25 @@ const Submenu = styled.ul`
 
   position: absolute;
   top: ${BASE_HEIGHT}px;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%); /* ⬅️ 가운데 정렬 */
+  transform-origin: top center;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   gap: 8px;
-  min-width: 80px;
+  min-width: 140px; /* 클릭 영역 안정적 확보 */
+  max-width: 260px;
+  text-align: center; /* 텍스트도 가운데 */
+  white-space: nowrap;
 
   opacity: ${({ $visible }) => ($visible ? 1 : 0)};
   pointer-events: ${({ $visible }) => ($visible ? "auto" : "none")};
-
   background: transparent;
   z-index: 1;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     display: none;
   }
 `;
@@ -141,23 +188,21 @@ const Submenu = styled.ul`
 const SubmenuItem = styled.button`
   background: none;
   border: none;
-  text-align: left;
   cursor: pointer;
-  padding: 4px 0;
+  padding: 4px 10px;
   font-size: 0.95rem;
   color: ${({ theme }) => theme.text};
   transition: transform 0.12s ease;
-
+  width: 100%; /* ⬅️ 전체 폭 클릭 가능 */
   &:hover {
     transform: translateX(2px);
   }
 `;
 
-/* 모바일 전용 UI (기존 유지) */
+/* 모바일 전용 */
 const Hamburger = styled.button`
   display: none;
-
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     display: ${({ $show }) => ($show ? "block" : "none")};
     position: fixed;
     top: 20px;
@@ -174,8 +219,7 @@ const Hamburger = styled.button`
 
 const CloseButton = styled.button`
   display: none;
-
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     display: flex;
     width: 85%;
     background: none;
@@ -190,7 +234,7 @@ const CloseButton = styled.button`
 
 const MLogo = styled.div`
   display: none;
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     display: flex;
     width: 160px;
     margin-bottom: 80px;
@@ -206,7 +250,7 @@ const MLogo = styled.div`
 
 const TextPhone = styled.div`
   display: none;
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     display: flex;
     color: ${({ theme }) => theme.text};
     transition: color 0.3s ease-in-out;
@@ -215,10 +259,9 @@ const TextPhone = styled.div`
     margin-top: 50px;
   }
 `;
-
 const TextEmail = styled.div`
   display: none;
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     display: flex;
     color: ${({ theme }) => theme.text};
     transition: color 0.3s ease-in-out;
@@ -228,35 +271,66 @@ const TextEmail = styled.div`
   }
 `;
 
-/* ====== 컴포넌트 ====== */
-const Header = ({ currentSection, sectionRefs }) => {
-  const [menuOpen, setMenuOpen] = useState(false); // 모바일 메뉴
-  const [hoveredKey, setHoveredKey] = useState(null); // PC 호버 중인 메뉴 키
+/* ---------- 섹션 매핑 ---------- */
+const HOME_SUB_TO_ID = {
+  회사소개: "about",
+  청소서비스: "sample",
+  코팅서비스: "info",
+  청소범위: "contact",
+};
+const CLEAN_SUB_TO_ID = {
+  "입주·이사 청소": "movein",
+  "상가·사무실 청소": "office",
+  "준공 청소": "post",
+  특수청소: "special",
+  새집케어: "newcare",
+};
+const COATING_SUB_TO_ID = {
+  "상판 코팅": "countertop",
+  마루코팅: "floor",
+  "왁스 코팅": "wax",
+};
+
+const Header = ({ currentSection }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [hoveredKey, setHoveredKey] = useState(null);
   const [isDesktop, setIsDesktop] = useState(true);
-  const [canShowSubmenu, setCanShowSubmenu] = useState(false); // height 트랜지션 완료 후만 true
-  const [scrolled, setScrolled] = useState(window.scrollY > 0);
+  const [canShowSubmenu, setCanShowSubmenu] = useState(false);
+  const [scrolled, setScrolled] = useState(
+    typeof window !== "undefined" ? window.scrollY > 0 : false
+  );
 
   const headerRef = useRef(null);
-  const lastHoverRef = useRef(null); // transitionend 동기화 시 현재 대상 메뉴 추적
+  const lastHoverRef = useRef(null);
 
-  // 메뉴 구조
   const menus = useMemo(
     () => ({
-      hero: { label: "백엔클린", subs: ["이동"] },
-      about: { label: "청소서비스", subs: ["입주", "거주", "준공", "특수"] },
-      info: { label: "청소범위", subs: ["거실", "주방", "화장실"] },
-      sample: { label: "코팅서비스", subs: ["마루", "장판"] },
-      contact: { label: "예약신청", subs: [] },
+      hero: {
+        label: "백엔클린",
+        subs: ["회사소개", "청소서비스", "코팅서비스", "청소범위"],
+      },
+      about: {
+        label: "청소서비스",
+        subs: [
+          "입주·이사 청소",
+          "상가·사무실 청소",
+          "준공 청소",
+          "특수청소",
+          "새집케어",
+        ],
+      },
+      sample: {
+        label: "코팅서비스",
+        subs: ["상판 코팅", "마루코팅", "왁스 코팅"],
+      },
+      contact: { label: "예약하기", subs: [] },
     }),
     []
   );
 
-  const scrollToSection = (id) => {
-    sectionRefs[id]?.current?.scrollIntoView({ behavior: "smooth" });
-    setMenuOpen(false);
-  };
-
-  // 데스크톱/모바일 전환 감지
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 769px)");
     const update = () => setIsDesktop(mq.matches);
@@ -269,7 +343,6 @@ const Header = ({ currentSection, sectionRefs }) => {
     if (isDesktop) setMenuOpen(false);
   }, [isDesktop]);
 
-  // 헤더 확장 높이 계산 (PC만)
   const expandedHeight = useMemo(() => {
     if (!isDesktop || !hoveredKey) return BASE_HEIGHT;
     const subCount = menus[hoveredKey]?.subs?.length ?? 0;
@@ -277,76 +350,108 @@ const Header = ({ currentSection, sectionRefs }) => {
     return BASE_HEIGHT + subCount * SUBITEM_HEIGHT + SUBLIST_PADDING + 10;
   }, [hoveredKey, isDesktop, menus]);
 
-  // transitionend: height 트랜지션이 끝났을 때만 서브메뉴 노출 허용
   useEffect(() => {
     const el = headerRef.current;
     if (!el) return;
-
     const onEnd = (e) => {
-      if (e.target !== el) return;
-      if (e.propertyName !== "height") return;
-
-      // 현재 호버 대상이 있고, 그 대상에 서브가 존재할 때만 표시
+      if (e.target !== el || e.propertyName !== "height") return;
       const key = lastHoverRef.current;
       const hasSubs = key && (menus[key]?.subs?.length ?? 0) > 0;
       setCanShowSubmenu(Boolean(hasSubs));
     };
-
     el.addEventListener("transitionend", onEnd);
     return () => el.removeEventListener("transitionend", onEnd);
   }, [menus]);
 
-  // 호버가 바뀌면 먼저 숨김(리셋) → height 트랜지션 완료 시 onEnd가 다시 켜줌
   useEffect(() => {
     lastHoverRef.current = hoveredKey;
     setCanShowSubmenu(false);
   }, [hoveredKey]);
 
-  // 헤더 밖으로 나가면 초기화
   const handleMouseLeave = () => {
     setHoveredKey(null);
     setCanShowSubmenu(false);
   };
 
-  // 서브메뉴/메뉴 클릭 라우팅
-  const goCoating = () => {
-    if (window && window.location) {
-      window.location.href = "/coating";
-    }
+  const smoothScrollToId = (id) => {
+    const el = document.getElementById(id);
+    if (!el) return false;
+    if ("scrollMarginTop" in el.style)
+      el.style.scrollMarginTop = `${BASE_HEIGHT + 12}px`;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    return true;
   };
 
-  const handleParentClick = (key) => {
-    if (key === "sample") {
-      goCoating();
-      return;
+  const goRouteSection = (routePath, sectionId) => {
+    if (location.pathname === routePath) {
+      requestAnimationFrame(() => {
+        if (!smoothScrollToId(sectionId))
+          setTimeout(() => smoothScrollToId(sectionId), 0);
+      });
+    } else {
+      navigate(`${routePath}#${sectionId}`);
     }
-    scrollToSection(key);
+    setMenuOpen(false);
+  };
+
+  useEffect(() => {
+    const hash = decodeURIComponent(location.hash || "").replace(/^#/, "");
+    if (!hash) return;
+    const tryScroll = () => smoothScrollToId(hash);
+    const t1 = requestAnimationFrame(() => {
+      if (!tryScroll()) setTimeout(tryScroll, 50);
+    });
+    return () => cancelAnimationFrame(t1);
+  }, [location.pathname, location.hash]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 0);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const handleParentClick = (key) => {
+    switch (key) {
+      case "hero":
+        navigate("/");
+        break;
+      case "about":
+        navigate("/clean");
+        break;
+      case "sample":
+        navigate("/coating");
+        break;
+      case "contact":
+        navigate("/contact");
+        break;
+      default:
+        break;
+    }
+    setMenuOpen(false);
   };
 
   const handleSubClick = (parentKey, subLabel) => {
+    if (parentKey === "hero") {
+      const id = HOME_SUB_TO_ID[subLabel];
+      if (id) goRouteSection("/", id);
+      return;
+    }
+    if (parentKey === "about") {
+      const id = CLEAN_SUB_TO_ID[subLabel];
+      if (id) goRouteSection("/clean", id);
+      return;
+    }
     if (parentKey === "sample") {
-      goCoating();
+      const id = COATING_SUB_TO_ID[subLabel];
+      if (id) goRouteSection("/coating", id);
       return;
     }
-    if (parentKey === "hero" && subLabel === "이동") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
-    scrollToSection(parentKey);
   };
 
   const isExpanded =
     isDesktop && !!hoveredKey && (menus[hoveredKey]?.subs?.length ?? 0) > 0;
-
-  // 서브메뉴 표시 여부는 "현재 호버된 메뉴 & canShowSubmenu" 동시 충족 필요
   const visibleFor = (key) => isDesktop && hoveredKey === key && canShowSubmenu;
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 0); // 0보다 크면 즉시 ON
-    onScroll(); // 첫 렌더에서도 반영
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
     <HeaderContainer
@@ -357,24 +462,23 @@ const Header = ({ currentSection, sectionRefs }) => {
       $scrolled={scrolled || hoveredKey !== null}
     >
       <TopRow>
-        <Logo onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-          백엔클린
-        </Logo>
+        <Logo onClick={() => navigate("/")}>백엔클린</Logo>
+
         <Hamburger onClick={() => setMenuOpen(true)} $show={!menuOpen}>
           ☰
         </Hamburger>
+
         <Nav open={menuOpen}>
           <CloseButton onClick={() => setMenuOpen(false)}>✕</CloseButton>
           <MLogo
-            onClick={() =>
-              window.scrollTo({ top: 0, behavior: "smooth" }) &
-              setMenuOpen(false)
-            }
+            onClick={() => {
+              navigate("/");
+              setMenuOpen(false);
+            }}
           >
             백엔클린
           </MLogo>
 
-          {/* ====== PC 메뉴 + 서브메뉴 ====== */}
           {/* 백엔클린 */}
           <NavItemWrap
             onMouseEnter={() => setHoveredKey("hero")}
@@ -382,7 +486,7 @@ const Header = ({ currentSection, sectionRefs }) => {
           >
             <NavItem
               onClick={() => handleParentClick("hero")}
-              $active={currentSection === "hero"}
+              $active={currentSection === "hero" || location.pathname === "/"}
             >
               {menus.hero.label}
             </NavItem>
@@ -404,7 +508,7 @@ const Header = ({ currentSection, sectionRefs }) => {
           >
             <NavItem
               onClick={() => handleParentClick("about")}
-              $active={currentSection === "about"}
+              $active={location.pathname === "/clean"}
             >
               {menus.about.label}
             </NavItem>
@@ -419,31 +523,17 @@ const Header = ({ currentSection, sectionRefs }) => {
             </Submenu>
           </NavItemWrap>
 
-          {/* 청소범위 */}
+          {/* 코팅서비스 */}
           <NavItemWrap
-            onMouseEnter={() => setHoveredKey("info")}
-            onFocus={() => setHoveredKey("info")}
+            onMouseEnter={() => setHoveredKey("sample")}
+            onFocus={() => setHoveredKey("sample")}
           >
             <NavItem
-              onClick={() => handleParentClick("info")}
-              $active={currentSection === "info"}
+              onClick={() => handleParentClick("sample")}
+              $active={location.pathname === "/coating"}
             >
-              {menus.info.label}
+              {menus.sample.label}
             </NavItem>
-            <Submenu $visible={visibleFor("info")}>
-              {menus.info.subs.map((s) => (
-                <li key={`info-${s}`}>
-                  <SubmenuItem onClick={() => handleSubClick("info", s)}>
-                    {s}
-                  </SubmenuItem>
-                </li>
-              ))}
-            </Submenu>
-          </NavItemWrap>
-
-          {/* 코팅서비스 */}
-          <NavItemWrap>
-            <NavItem>{menus.sample.label}</NavItem>
             <Submenu $visible={visibleFor("sample")}>
               {menus.sample.subs.map((s) => (
                 <li key={`sample-${s}`}>
@@ -455,22 +545,21 @@ const Header = ({ currentSection, sectionRefs }) => {
             </Submenu>
           </NavItemWrap>
 
-          {/* 예약신청 (서브 없음) */}
+          {/* 예약하기 */}
           <NavItemWrap
             onMouseEnter={() => setHoveredKey("contact")}
             onFocus={() => setHoveredKey("contact")}
           >
-            <NavItem
+            <NavItem2
               onClick={() => handleParentClick("contact")}
-              $active={currentSection === "contact"}
+              $active={location.pathname === "/contact"}
             >
               {menus.contact.label}
-            </NavItem>
+            </NavItem2>
           </NavItemWrap>
 
-          {/* 모바일 하단 연락처 (기존 유지) */}
           <TextPhone>010-9508-6626</TextPhone>
-          <TextEmail>baeksaekclaen@gmail.com</TextEmail>
+          <TextEmail>baeksaekclean@gmail.com</TextEmail>
         </Nav>
       </TopRow>
     </HeaderContainer>

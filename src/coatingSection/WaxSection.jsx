@@ -1,0 +1,17 @@
+import styled from "styled-components";
+
+const Section = styled.section`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #a6b5c4;
+  position: relative;
+`;
+const WaxSection = () => {
+  return <Section></Section>;
+};
+
+export default WaxSection;
