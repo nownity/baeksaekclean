@@ -1,10 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
-import HeroSection from "./HeroSection";
-import AboutSection from "./AboutSection";
-import SampleSection from "./SampleSection";
-import InfoSection from "./InfoSection";
-import ContactSection from "./ContactSection";
+import HeroSection from "../mainSection/HeroSection";
+import AboutSection from "../mainSection/AboutSection";
+import SampleSection from "../mainSection/SampleSection";
+import InfoSection from "../mainSection/InfoSection";
+import ContactSection from "../mainSection/ContactSection";
 
 const Container = styled.main`
   display: flex;
