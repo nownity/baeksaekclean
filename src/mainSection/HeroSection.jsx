@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import main1 from "../images/main.JPEG";
+import main1 from "../images/main1.jpg";
 import ContactBtn from "../components/ContactBtn";
 import useScrollFadeIn from "../hooks/useScrollFadIn";
 
@@ -31,12 +31,17 @@ const Overlay = styled.div`
 `;
 
 const TextSection = styled.section`
-  width: 80%;
-  height: 30%;
+  width: 70%;
+  height: 50%;
+  padding-bottom: 50px;
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center;
   flex-direction: column;
+  @media (max-width: 768px) {
+    align-items: center;
+    height: 40%;
+  }
 `;
 
 const Title = styled.h1`
@@ -49,6 +54,7 @@ const Title = styled.h1`
   @media (max-width: 768px) {
     font-size: 32px;
     margin-bottom: 10px;
+    text-align: center;
   }
 `;
 
