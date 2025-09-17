@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import main1 from "../images/main1.jpg";
+import main1 from "../images/main.JPEG";
 import ContactBtn from "../components/ContactBtn";
 import useScrollFadeIn from "../hooks/useScrollFadIn";
 
@@ -32,7 +32,7 @@ const Overlay = styled.div`
 
 const TextSection = styled.section`
   width: 80%;
-  height: 35%;
+  height: 30%;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -44,6 +44,7 @@ const Title = styled.h1`
   color: ${({ theme }) => theme.text};
   transition: color 0.3s ease-in-out;
   margin-bottom: 20px;
+  font-weight: 400;
   z-index: 1;
   @media (max-width: 768px) {
     font-size: 32px;
@@ -58,7 +59,7 @@ const WhiteText = styled.span`
 `;
 
 const SubTitle = styled.h1`
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: ${({ theme }) => theme.textSub};
   transition: color 0.3s ease-in-out;
   padding-left: 20px;

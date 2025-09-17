@@ -88,7 +88,7 @@ const NavItemWrap = styled.div`
   align-items: center;
   justify-content: center;
   height: ${BASE_HEIGHT}px;
-  flex: 0 0 auto; /* ⬅️ 메뉴 래퍼가 늘어나지 않게 고정 */
+  flex: 0 0 auto;
   @media (max-width: 1024px) {
     height: auto;
     width: 100%;
@@ -100,14 +100,14 @@ const NavItem = styled.button`
   background: none;
   border: none;
   font-size: 1rem;
-  font-weight: ${({ $active }) => ($active ? "700" : "400")};
+  font-weight: ${({ $active }) => ($active ? "800" : "800")};
   color: ${({ $active, theme }) => ($active ? theme.text : theme.headertext)};
   border-bottom: ${({ $active, theme }) =>
     $active ? `2px solid ${theme.text}` : "none"};
   transition: transform 0.1s ease-in-out, color 0.3s ease-in-out;
   cursor: pointer;
   padding: 6px 2px;
-  min-width: 85px; /* ⬅️ 기준 폭 확보(가운데 정렬 안정화) */
+  min-width: 85px;
   text-align: center;
 
   &:hover {
@@ -137,12 +137,14 @@ const NavItem2 = styled.button`
   cursor: pointer;
   padding: 6px 2px;
   min-width: 110px;
+
   &:hover {
     transform: scale(1.08);
   }
 
   @media (max-width: 1024px) {
     background: none;
+    font-weight: ${({ $active }) => ($active ? "800" : "800")};
     color: ${({ $active, theme }) => ($active ? theme.text : theme.headertext)};
     border-radius: 0px;
     margin-bottom: 50px;
@@ -154,7 +156,6 @@ const NavItem2 = styled.button`
   }
 `;
 
-/* ⭐ 핵심 정렬 수정: 각 메뉴명을 기준으로 서브메뉴를 가운데 정렬 */
 const Submenu = styled.ul`
   list-style: none;
   padding: 8px 0;
@@ -163,16 +164,16 @@ const Submenu = styled.ul`
   position: absolute;
   top: ${BASE_HEIGHT}px;
   left: 50%;
-  transform: translateX(-50%); /* ⬅️ 가운데 정렬 */
+  transform: translateX(-50%);
   transform-origin: top center;
 
   display: flex;
   flex-direction: column;
   align-items: stretch;
   gap: 8px;
-  min-width: 140px; /* 클릭 영역 안정적 확보 */
+  min-width: 140px;
   max-width: 260px;
-  text-align: center; /* 텍스트도 가운데 */
+  text-align: center;
   white-space: nowrap;
 
   opacity: ${({ $visible }) => ($visible ? 1 : 0)};
@@ -193,13 +194,12 @@ const SubmenuItem = styled.button`
   font-size: 0.95rem;
   color: ${({ theme }) => theme.text};
   transition: transform 0.12s ease;
-  width: 100%; /* ⬅️ 전체 폭 클릭 가능 */
+  width: 100%;
   &:hover {
     transform: translateX(2px);
   }
 `;
 
-/* 모바일 전용 */
 const Hamburger = styled.button`
   display: none;
   @media (max-width: 1024px) {
@@ -271,7 +271,7 @@ const TextEmail = styled.div`
   }
 `;
 
-/* ---------- 섹션 매핑 ---------- */
+/* 섹션 매핑 */
 const HOME_SUB_TO_ID = {
   회사소개: "about",
   청소서비스: "sample",
@@ -331,6 +331,7 @@ const Header = ({ currentSection }) => {
     []
   );
 
+  /* 데스크톱 감지 */
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 769px)");
     const update = () => setIsDesktop(mq.matches);
@@ -343,6 +344,7 @@ const Header = ({ currentSection }) => {
     if (isDesktop) setMenuOpen(false);
   }, [isDesktop]);
 
+  /* 확장 높이 계산 */
   const expandedHeight = useMemo(() => {
     if (!isDesktop || !hoveredKey) return BASE_HEIGHT;
     const subCount = menus[hoveredKey]?.subs?.length ?? 0;
@@ -350,6 +352,7 @@ const Header = ({ currentSection }) => {
     return BASE_HEIGHT + subCount * SUBITEM_HEIGHT + SUBLIST_PADDING + 10;
   }, [hoveredKey, isDesktop, menus]);
 
+  /* 트랜지션 후 서브 표시 */
   useEffect(() => {
     const el = headerRef.current;
     if (!el) return;
@@ -373,6 +376,7 @@ const Header = ({ currentSection }) => {
     setCanShowSubmenu(false);
   };
 
+  /* 공통 스크롤 유틸 */
   const smoothScrollToId = (id) => {
     const el = document.getElementById(id);
     if (!el) return false;
@@ -382,6 +386,47 @@ const Header = ({ currentSection }) => {
     return true;
   };
 
+  /* 다른 라우트 → 해시가 있으면 해당 섹션 스크롤 */
+  useEffect(() => {
+    const hash = decodeURIComponent(location.hash || "").replace(/^#/, "");
+    if (hash) {
+      const tryScroll = () => smoothScrollToId(hash);
+      const t1 = requestAnimationFrame(() => {
+        if (!tryScroll()) setTimeout(tryScroll, 50);
+      });
+      return () => cancelAnimationFrame(t1);
+    }
+  }, [location.pathname, location.hash]);
+
+  /* 🔹 라우트 변경 시 해시가 없으면 최상단으로 이동 */
+  useEffect(() => {
+    if (!location.hash) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [location.pathname, location.hash]);
+
+  /* 메뉴명 클릭 → 라우트 이동 + 최상단 */
+  const handleParentClick = (key) => {
+    const map = {
+      hero: "/",
+      about: "/clean",
+      sample: "/coating",
+      contact: "/contact",
+    };
+    const path = map[key];
+    if (!path) return;
+
+    if (location.pathname === path) {
+      // 같은 라우트면 스크롤만 맨 위로
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      // 다른 라우트면 이동 (위의 pathname effect가 최상단으로 올려줌)
+      navigate(path);
+    }
+    setMenuOpen(false);
+  };
+
+  /* 세부메뉴 클릭: 같은 라우트면 스크롤, 다르면 이동 후 스크롤 */
   const goRouteSection = (routePath, sectionId) => {
     if (location.pathname === routePath) {
       requestAnimationFrame(() => {
@@ -390,43 +435,6 @@ const Header = ({ currentSection }) => {
       });
     } else {
       navigate(`${routePath}#${sectionId}`);
-    }
-    setMenuOpen(false);
-  };
-
-  useEffect(() => {
-    const hash = decodeURIComponent(location.hash || "").replace(/^#/, "");
-    if (!hash) return;
-    const tryScroll = () => smoothScrollToId(hash);
-    const t1 = requestAnimationFrame(() => {
-      if (!tryScroll()) setTimeout(tryScroll, 50);
-    });
-    return () => cancelAnimationFrame(t1);
-  }, [location.pathname, location.hash]);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 0);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const handleParentClick = (key) => {
-    switch (key) {
-      case "hero":
-        navigate("/");
-        break;
-      case "about":
-        navigate("/clean");
-        break;
-      case "sample":
-        navigate("/coating");
-        break;
-      case "contact":
-        navigate("/contact");
-        break;
-      default:
-        break;
     }
     setMenuOpen(false);
   };
@@ -453,6 +461,14 @@ const Header = ({ currentSection }) => {
     isDesktop && !!hoveredKey && (menus[hoveredKey]?.subs?.length ?? 0) > 0;
   const visibleFor = (key) => isDesktop && hoveredKey === key && canShowSubmenu;
 
+  /* 스크롤 상태 */
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 0);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <HeaderContainer
       ref={headerRef}
@@ -462,7 +478,15 @@ const Header = ({ currentSection }) => {
       $scrolled={scrolled || hoveredKey !== null}
     >
       <TopRow>
-        <Logo onClick={() => navigate("/")}>백엔클린</Logo>
+        <Logo
+          onClick={() => {
+            navigate("/");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            setMenuOpen(false);
+          }}
+        >
+          백엔클린
+        </Logo>
 
         <Hamburger onClick={() => setMenuOpen(true)} $show={!menuOpen}>
           ☰
@@ -473,6 +497,7 @@ const Header = ({ currentSection }) => {
           <MLogo
             onClick={() => {
               navigate("/");
+              window.scrollTo({ top: 0, behavior: "smooth" });
               setMenuOpen(false);
             }}
           >

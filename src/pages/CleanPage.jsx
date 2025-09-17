@@ -5,6 +5,7 @@ import MoveinSection from "../cleanSection/MoveinSection";
 import OfficeSection from "../cleanSection/OfficeSection";
 import PostSection from "../cleanSection/PostSection";
 import NewcareSection from "../cleanSection/NewcareSection";
+import CleanHeroSection from "../cleanSection/CleanHeroSection";
 
 const Container = styled.main`
   display: flex;
@@ -22,6 +23,7 @@ const MainWrapper = styled.main`
 const CleanPage = ({ toggleTheme, isDarkMode }) => {
   const [currentSection, setCurrentSection] = useState("movein");
 
+  const heroRef = useRef(null);
   const moveinRef = useRef(null);
   const officeRef = useRef(null);
   const postRef = useRef(null);
@@ -38,9 +40,11 @@ const CleanPage = ({ toggleTheme, isDarkMode }) => {
       { threshold: 0.18 }
     );
 
-    [moveinRef, officeRef, postRef, specialRef, newcareRef].forEach((ref) => {
-      if (ref.current) observer.observe(ref.current);
-    });
+    [heroRef, moveinRef, officeRef, postRef, specialRef, newcareRef].forEach(
+      (ref) => {
+        if (ref.current) observer.observe(ref.current);
+      }
+    );
 
     return () => observer.disconnect();
   }, []);
@@ -48,6 +52,10 @@ const CleanPage = ({ toggleTheme, isDarkMode }) => {
   return (
     <Container>
       <MainWrapper>
+        <section id="hero" ref={heroRef}>
+          <CleanHeroSection currentSection={currentSection} />
+        </section>
+
         <section id="movein" ref={moveinRef}>
           <MoveinSection currentSection={currentSection} />
         </section>
