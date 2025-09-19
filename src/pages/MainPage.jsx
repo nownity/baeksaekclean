@@ -3,8 +3,8 @@ import styled from "styled-components";
 import HeroSection from "../mainSection/HeroSection";
 import AboutSection from "../mainSection/AboutSection";
 import SampleSection from "../mainSection/SampleSection";
-import InfoSection from "../mainSection/InfoSection";
-import ContactSection from "../mainSection/ContactSection";
+import ScopeSection from "../mainSection/ScopeSection";
+import CoatingSection from "../mainSection/CoatingSection";
 
 const Container = styled.main`
   display: flex;
@@ -62,12 +62,12 @@ const MainPage = ({ toggleTheme, isDarkMode }) => {
 
         {/* “코팅서비스” → info */}
         <section id="info" ref={infoRef}>
-          <InfoSection />
+          <CoatingSection />
         </section>
 
         {/* “청소범위” → contact */}
         <section id="contact" ref={contactRef}>
-          <ContactSection />
+          <ScopeSection />
         </section>
       </MainWrapper>
     </Container>
