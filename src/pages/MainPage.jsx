@@ -2,9 +2,9 @@ import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import HeroSection from "../mainSection/HeroSection";
 import AboutSection from "../mainSection/AboutSection";
-import SampleSection from "../mainSection/SampleSection";
 import ScopeSection from "../mainSection/ScopeSection";
 import CoatingSection from "../mainSection/CoatingSection";
+import CleanSection from "../mainSection/CleanSection";
 
 const Container = styled.main`
   display: flex;
@@ -57,7 +57,7 @@ const MainPage = ({ toggleTheme, isDarkMode }) => {
 
         {/* “청소서비스” → sample */}
         <section id="sample" ref={sampleRef}>
-          <SampleSection />
+          <CleanSection />
         </section>
 
         {/* “코팅서비스” → info */}
