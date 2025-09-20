@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import logoImg from "../images/logo_sim.png";
 
 const BASE_HEIGHT = 70;
 const SUBITEM_HEIGHT = 36;
@@ -44,7 +45,7 @@ const TopRow = styled.div`
 `;
 
 const Logo = styled.div`
-  width: 160px;
+  width: 320px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,8 +54,23 @@ const Logo = styled.div`
   font-size: 1.4rem;
   font-weight: bold;
   cursor: pointer;
+
   @media (min-width: 1024px) {
     margin-left: 12px;
+  }
+
+  img {
+    width: 28px;
+    height: auto;
+    margin-right: 2px;
+  }
+
+  span + span {
+    margin-left: 8px;
+  }
+
+  .white {
+    color: white;
   }
 `;
 
@@ -309,7 +325,7 @@ const Header = ({ currentSection }) => {
   const menus = useMemo(
     () => ({
       hero: {
-        label: "백엔클린",
+        label: "백앤클린",
         subs: ["회사소개", "청소서비스", "코팅서비스", "청소범위"],
       },
       about: {
@@ -485,13 +501,13 @@ const Header = ({ currentSection }) => {
             setMenuOpen(false);
           }}
         >
-          백엔클린
+          <img src={logoImg} alt="백앤클린 로고" />
+          <span>백앤클린</span>
+          <span className="white">BAEK N CLEAN</span>
         </Logo>
-
         <Hamburger onClick={() => setMenuOpen(true)} $show={!menuOpen}>
           ☰
         </Hamburger>
-
         <Nav open={menuOpen}>
           <CloseButton onClick={() => setMenuOpen(false)}>✕</CloseButton>
           <MLogo

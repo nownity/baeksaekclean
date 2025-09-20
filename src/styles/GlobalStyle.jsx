@@ -66,8 +66,15 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
   }
 
+  @font-face {
+    font-family: 'NoonnuBasicGothicRegular';
+    src: url('/fonts/NoonnuBasicGothicRegular.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+  }
+  
   body {
-    font-family: 'TheJamsil', sans-serif;
+    font-family: 'NoonnuBasicGothicRegular', sans-serif;
   }
 
 `;

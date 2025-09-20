@@ -199,16 +199,16 @@ const AboutSection = () => {
       <HalfSection>
         <Title {...fadeInAbout}>ABOUT</Title>
         <SubTitle {...fadeInTitle}>
-          <WhiteText>백색</WhiteText>클린
+          <WhiteText>백앤</WhiteText>클린
         </SubTitle>
         <Text {...fadeInText}>
-          안녕하세요 종합 청소 전문 업체 백색클린 입니다.
+          안녕하세요 종합 청소 전문 업체 백앤클린 입니다.
         </Text>
         <SubText {...fadeInText}>
           오늘도, 청소 때문에 고민하고 계신가요?
         </SubText>
         <Text {...fadeInText2}>
-          백색클린은 입주 / 거주 / 이사 / 상가 / 준공 / 특수청소까지
+          백앤클린은 입주 / 거주 / 이사 / 상가 / 준공 / 특수청소까지
         </Text>
         <SubText {...fadeInText2}>모두 한 번에 해결해드립니다.</SubText>
         <Text {...fadeInText3}>믿을 수 있는 청소 전문가가</Text>

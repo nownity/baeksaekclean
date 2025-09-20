@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import main1 from "../images/coating1.JPEG";
-import main2 from "../images/coating2.JPEG";
-import main3 from "../images/coating3.JPEG";
+import main1 from "../images/coating6.png";
+import main2 from "../images/coating4.png";
+import main3 from "../images/coating5.png";
 
 const Section = styled.section`
   width: 100%;
@@ -98,7 +98,6 @@ const Img = styled.img`
   object-fit: cover;
   transform: scale(1.04);
   transition: filter 0.35s ease;
-  filter: brightness(0.83);
 
   ${Card}:hover & {
     filter: brightness(0.6);
@@ -106,6 +105,19 @@ const Img = styled.img`
 `;
 
 const Overlay = styled.div`
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  color: #000000;
+  transition: all 0.35s ease;
+`;
+
+const Overlay2 = styled.div`
   position: absolute;
   inset: 0;
   display: flex;
@@ -130,6 +142,8 @@ const Desc = styled.div`
   max-height: 0;
   overflow: hidden;
   transition: opacity 0.35s ease, max-height 0.35s ease;
+  word-break: keep-all; /* 단어 단위로 줄바꿈 */
+  overflow-wrap: break-word; /* 긴 단어는 영역 안에서만 줄바꿈 */
 
   ${Card}:hover & {
     opacity: 1;
@@ -225,20 +239,20 @@ const CoatingSection = () => {
         <Grid>
           <Card ref={card1Ref} aria-label="코팅 서비스 카드 1">
             <Img src={main1} alt="" />
-            <Overlay>
+            <Overlay2>
               <Name>상판 코팅</Name>
               <Desc>
                 주방이나 가구 상판을 보호해 오염과 스크래치를 막아줍니다.
               </Desc>
-            </Overlay>
+            </Overlay2>
           </Card>
 
           <Card2 aria-label="코팅 서비스 카드 2">
             <Img src={main2} alt="" />
-            <Overlay>
+            <Overlay2>
               <Name>마루 코팅</Name>
               <Desc>바닥 마루를 코팅해 내구성을 높이고 관리가 쉬워집니다.</Desc>
-            </Overlay>
+            </Overlay2>
           </Card2>
 
           <Card ref={card3Ref} aria-label="코팅 서비스 카드 3">
