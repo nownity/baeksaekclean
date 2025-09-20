@@ -2,8 +2,8 @@
 import styled from "styled-components";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import main1 from "../images/is1.JPEG";
-import main2 from "../images/office1.JPEG";
+import main1 from "../images/ip4.jpg";
+import main2 from "../images/office2.jpg";
 import main3 from "../images/post1.JPEG";
 import main4 from "../images/spe1.JPEG";
 
@@ -82,7 +82,6 @@ const ImageBox = styled.div`
   background: #f2f3f5;
   overflow: hidden;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
-  filter: brightness(0.85);
 
   @media (max-width: 768px) {
     height: 200px;
@@ -231,7 +230,10 @@ const CleanSection = () => {
     };
   }, []);
 
-  const goDetail = () => navigate("/clean");
+  const goDetail = () => navigate("/clean#movein");
+  const goDetail2 = () => navigate("/clean#office");
+  const goDetail3 = () => navigate("/clean#post");
+  const goDetail4 = () => navigate("/clean#special");
 
   return (
     <Section>
@@ -271,7 +273,7 @@ const CleanSection = () => {
                 동시에 개선합니다.
               </CardDesc>
               <MoreRow>
-                <MoreButton onClick={goDetail}>
+                <MoreButton onClick={goDetail2}>
                   자세히 보기 <span aria-hidden>›</span>{" "}
                 </MoreButton>
               </MoreRow>
@@ -290,7 +292,7 @@ const CleanSection = () => {
                 최적의 컨디션을 완성합니다.
               </CardDesc>
               <MoreRow>
-                <MoreButton onClick={goDetail}>
+                <MoreButton onClick={goDetail3}>
                   자세히 보기 <span aria-hidden>›</span>{" "}
                 </MoreButton>
               </MoreRow>
@@ -309,7 +311,7 @@ const CleanSection = () => {
                 복구/정리합니다.
               </CardDesc>
               <MoreRow>
-                <MoreButton onClick={goDetail}>
+                <MoreButton onClick={goDetail4}>
                   자세히 보기 <span aria-hidden>›</span>{" "}
                 </MoreButton>
               </MoreRow>

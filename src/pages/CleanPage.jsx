@@ -56,6 +56,7 @@ const CleanPage = ({ toggleTheme, isDarkMode }) => {
           <CleanHeroSection currentSection={currentSection} />
         </section>
 
+        {/* “입주·이사 청소” → office */}
         <section id="movein" ref={moveinRef}>
           <MoveinSection currentSection={currentSection} />
         </section>
