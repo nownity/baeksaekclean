@@ -1,30 +1,111 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
+    <!-- 기본 설정 -->
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- 기본 정보 -->
     <meta name="theme-color" content="#ffffff" />
-    <meta name="description" content="백엔클린 — 하얗고 완벽한 청소" />
-    <meta name="keywords" content="백엔클린 — 하얗고 완벽한 청소" />
-    <meta name="author" content="백엔클린 — 하얗고 완벽한 청소" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="robots" content="index,follow" />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
 
-    <!-- SNS 공유용 (OG 태그) -->
-    <meta property="og:title" content="백엔클린" />
-    <meta property="og:description" content="하얗고 완벽한 청소" />
-    <meta property="og:image" content="%PUBLIC_URL%/og-image.png" />
-    <meta property="og:url" content="https://baeksaekclean.com" />
+    <!-- SEO -->
+    <title>백앤클린 — 하얗고 완벽한 청소</title>
+    <meta name="title" content="백앤클린 — 하얗고 완벽한 청소" />
+    <meta
+      name="description"
+      content="입주·이사 청소, 상가·사무실 청소, 준공·특수 청소, 새집케어 전문 — ‘하얗고 완벽한 청소’ 백앤클린"
+    />
+    <meta
+      name="keywords"
+      content="백앤클린 - 이사청소, 입주청소, 상가청소, 사무실청소, 준공청소, 특수청소, 새집케어 서비스"
+    />
+    <meta name="author" content="백앤클린" />
+
+    <!-- 정규 URL -->
+    <link rel="canonical" href="https://백앤클린.com/" />
+    <link rel="alternate" href="https://xn--sy2bv9b47mxpl.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:locale" content="ko_KR" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="백앤클린" />
+    <meta property="og:title" content="백앤클린 — 하얗고 완벽한 청소" />
+    <meta
+      property="og:description"
+      content="입주·이사 청소, 상가·사무실 청소, 준공·특수 청소, 새집케어 전문 — ‘하얗고 완벽한 청소’ 백앤클린"
+    />
+    <meta property="og:url" content="https://xn--sy2bv9b47mxpl.com/" />
+    <meta
+      property="og:image"
+      content="https://xn--sy2bv9b47mxpl.com/og-image.png"
+    />
+    <meta
+      property="og:image:secure_url"
+      content="https://xn--sy2bv9b47mxpl.com/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
-    <!-- 모바일 아이콘 -->
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="백앤클린 — 하얗고 완벽한 청소" />
+    <meta
+      name="twitter:description"
+      content="입주·이사 청소, 상가·사무실 청소, 준공·특수 청소, 새집케어 전문 — ‘하얗고 완벽한 청소’ 백앤클린"
+    />
+    <meta name="twitter:url" content="https://xn--sy2bv9b47mxpl.com/" />
+    <meta
+      name="twitter:image"
+      content="https://xn--sy2bv9b47mxpl.com/og-image.png"
+    />
 
-    <!-- PWA 기능 유지 or 제거 가능 -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!-- Favicon & Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/web-app-manifest-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="/web-app-manifest-512x512.png"
+    />
 
-    <title>백엔클린</title>
+    <!-- Manifest / PWA -->
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/favicon.svg" color="#000000" />
+    <meta name="apple-mobile-web-app-title" content="백앤클린" />
+    <meta name="application-name" content="백앤클린" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+
+    <!-- JSON-LD Schema.org -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "백앤클린",
+        "url": "https://xn--sy2bv9b47mxpl.com/",
+        "image": "https://xn--sy2bv9b47mxpl.com/og-image.png",
+        "description": "입주·이사 청소, 상가·사무실 청소, 준공·특수 청소, 새집케어 전문 — ‘하얗고 완벽한 청소’ 백앤클린",
+        "areaServed": "KR",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "KR"
+        },
+        "sameAs": ["https://xn--sy2bv9b47mxpl.com/"]
+      }
+    </script>
   </head>
   <body>
     <noscript
