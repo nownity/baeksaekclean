@@ -2,6 +2,7 @@ import styled from "styled-components";
 import main1 from "../images/main1.jpg";
 import ContactBtn from "../components/ContactBtn";
 import useScrollFadeIn from "../hooks/useScrollFadIn";
+import { useNavigate } from "react-router-dom";
 
 const Section = styled.section`
   width: 100%;
@@ -86,12 +87,12 @@ const BtnSection = styled.section`
 `;
 
 const HeroSection = ({ sectionRefs }) => {
+  const navigate = useNavigate();
+  const goDetail = () => navigate("/contact");
+
   const fadeInTitle = useScrollFadeIn("up", 1, 0);
   const fadeInSubTitle = useScrollFadeIn("up", 1, 0.8);
   const fadeInBtn = useScrollFadeIn("up", 1, 1.5);
-  const scrollToSection = (id) => {
-    sectionRefs[id]?.current?.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <Section>
@@ -106,9 +107,7 @@ const HeroSection = ({ sectionRefs }) => {
         </SubTitle>
       </TextSection>
       <BtnSection {...fadeInBtn}>
-        <ContactBtn onClick={() => scrollToSection("contact")}>
-          간편하게 신청하기
-        </ContactBtn>
+        <ContactBtn onClick={goDetail}>간편하게 신청하기</ContactBtn>
       </BtnSection>
     </Section>
   );
