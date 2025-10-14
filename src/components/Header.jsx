@@ -52,7 +52,6 @@ const Logo = styled.div`
   color: ${({ theme }) => theme.text};
   transition: color 0.3s ease-in-out;
   font-size: 1.4rem;
-  font-weight: bold;
   cursor: pointer;
 
   @media (min-width: 1024px) {
@@ -116,7 +115,7 @@ const NavItem = styled.button`
   background: none;
   border: none;
   font-size: 1rem;
-  font-weight: ${({ $active }) => ($active ? "800" : "800")};
+  font-weight: 800;
   color: ${({ $active, theme }) => ($active ? theme.text : theme.headertext)};
   border-bottom: ${({ $active, theme }) =>
     $active ? `2px solid ${theme.text}` : "none"};
