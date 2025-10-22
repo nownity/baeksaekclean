@@ -7,7 +7,6 @@ const Section = styled.section`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #a6b5c4;
   position: relative;
 `;
 const WaxSection = () => {

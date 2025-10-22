@@ -297,12 +297,12 @@ const CLEAN_SUB_TO_ID = {
   "입주·이사 청소": "movein",
   "상가·사무실 청소": "office",
   "준공 청소": "post",
-  특수청소: "special",
-  새집케어: "newcare",
+  "특수 청소": "special",
+  "새집 케어": "newcare",
 };
 const COATING_SUB_TO_ID = {
   "상판 코팅": "countertop",
-  마루코팅: "floor",
+  "마루 코팅": "floor",
   "왁스 코팅": "wax",
 };
 
@@ -333,13 +333,13 @@ const Header = ({ currentSection }) => {
           "입주·이사 청소",
           "상가·사무실 청소",
           "준공 청소",
-          "특수청소",
-          "새집케어",
+          "특수 청소",
+          "새집 케어",
         ],
       },
       sample: {
         label: "코팅서비스",
-        subs: ["상판 코팅", "마루코팅", "왁스 코팅"],
+        subs: ["상판 코팅", "마루 코팅", "왁스 코팅"],
       },
       contact: { label: "예약하기", subs: [] },
     }),

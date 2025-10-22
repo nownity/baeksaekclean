@@ -7,7 +7,6 @@ const Section = styled.section`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #a37b82;
   position: relative;
 `;
 const FloorSection = () => {
