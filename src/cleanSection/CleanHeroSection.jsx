@@ -22,6 +22,7 @@ const Section = styled.section`
   margin-bottom: 150px;
   @media (max-width: 1200px) {
     margin-bottom: 0px;
+    min-height: 56vh;
   }
 `;
 
