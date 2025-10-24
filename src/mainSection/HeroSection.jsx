@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import main1 from "../images/main1.jpg";
 import ContactBtn from "../components/ContactBtn";
 import useScrollFadeIn from "../hooks/useScrollFadIn";
 import { useNavigate } from "react-router-dom";
@@ -7,19 +6,25 @@ import { useNavigate } from "react-router-dom";
 const Section = styled.section`
   width: 100%;
   height: 100vh;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-image: url(${main1});
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
+  overflow: hidden;
+`;
+
+const BackgroundVideo = styled.video`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
 `;
 
 const Overlay = styled.div`
-  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -28,7 +33,7 @@ const Overlay = styled.div`
   background: ${({ theme }) =>
     theme.mode === "dark" ? "rgba(0, 0, 0, 0.4)" : "transparent"};
   transition: all 0.3s ease-in-out;
-  z-index: 0;
+  z-index: 1;
 `;
 
 const TextSection = styled.section`
@@ -39,6 +44,8 @@ const TextSection = styled.section`
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
+  z-index: 2;
+
   @media (max-width: 768px) {
     align-items: center;
     height: 40%;
@@ -51,7 +58,8 @@ const Title = styled.h1`
   transition: color 0.3s ease-in-out;
   margin-bottom: 20px;
   font-weight: 400;
-  z-index: 1;
+  z-index: 2;
+
   @media (max-width: 768px) {
     font-size: 32px;
     margin-bottom: 10px;
@@ -62,7 +70,7 @@ const Title = styled.h1`
 const WhiteText = styled.span`
   color: ${({ theme }) => theme.textWhite};
   transition: color 0.3s ease-in-out;
-  z-index: 1;
+  z-index: 2;
 `;
 
 const SubTitle = styled.h1`
@@ -70,7 +78,8 @@ const SubTitle = styled.h1`
   color: ${({ theme }) => theme.textSub};
   transition: color 0.3s ease-in-out;
   padding-left: 20px;
-  z-index: 1;
+  z-index: 2;
+
   @media (max-width: 768px) {
     font-size: 15px;
     padding-left: 10px;
@@ -83,7 +92,7 @@ const BtnSection = styled.section`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  z-index: 1;
+  z-index: 2;
 `;
 
 const HeroSection = ({ sectionRefs }) => {
@@ -95,7 +104,18 @@ const HeroSection = ({ sectionRefs }) => {
   const fadeInBtn = useScrollFadeIn("up", 1, 1.5);
 
   return (
-    <Section>
+    <Section ref={sectionRefs}>
+      <BackgroundVideo
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        poster="/images/hero-poster.jpg"
+      >
+        <source src="/videos/hero.webm" type="video/webm" />
+        <source src="/videos/hero.mp4" type="video/mp4" />
+      </BackgroundVideo>
       <Overlay />
       <TextSection>
         <Title {...fadeInTitle}>
