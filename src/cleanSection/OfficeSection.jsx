@@ -80,13 +80,6 @@ const DescriptionBox = styled.div`
   }
 `;
 
-const SliderWrapper = styled.div`
-  @media (max-width: 1200px) {
-    order: 1;
-    flex: 1;
-  }
-`;
-
 const DesTitleR = styled.div`
   font-size: 26px;
   font-weight: 700;
@@ -118,9 +111,7 @@ const OfficeSection = () => {
         <SubTitle>Commercial Space Cleaning</SubTitle>
       </TitleWrapper>
       <ExWrapper>
-        <SliderWrapper>
-          <ImageSlider images={[ex11, ex12, ex13]} />
-        </SliderWrapper>
+        <ImageSlider images={[ex11, ex12, ex13]} />
         <DescriptionBox>
           <DesTitleR>첫인상은 공간이 말합니다</DesTitleR>
           <DesTextR>

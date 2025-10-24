@@ -80,13 +80,6 @@ const DescriptionBox = styled.div`
   }
 `;
 
-const SliderWrapper = styled.div`
-  @media (max-width: 1200px) {
-    order: 1;
-    flex: 1;
-  }
-`;
-
 const DesTitleR = styled.div`
   font-size: 26px;
   font-weight: 700;
@@ -118,9 +111,7 @@ const SpecialSection = () => {
         <SubTitle>Specialized Cleaning Service</SubTitle>
       </TitleWrapper>
       <ExWrapper>
-        <SliderWrapper>
-          <ImageSlider images={[ex21, ex22, ex23]} />
-        </SliderWrapper>
+        <ImageSlider images={[ex21, ex22, ex23]} />
         <DescriptionBox>
           <DesTitleR>보이지 않는 위험까지, 안전하게</DesTitleR>
           <DesTextR>
