@@ -162,8 +162,8 @@ const Footer = () => {
             </LinkRow>
             <Meta>
               <span>고객센터 10:00–18:00 (주말/공휴일 휴무)</span>
-              <span>email@example.com</span>
-              <span>Tel 010-0000-0000</span>
+              <span>baeknclean@example.com</span>
+              <span>Tel 010-9508-6626</span>
             </Meta>
           </InfoBlock>
         </FooterGrid>
