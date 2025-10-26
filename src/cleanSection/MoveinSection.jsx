@@ -31,24 +31,21 @@ const TitleWrapper = styled.div`
 const Title = styled.div`
   font-size: 40px;
   font-weight: 500;
-  color: ${({ theme }) => theme.text};
-  transition: color 0.3s ease-in-out;
+  color: #111111;
   @media (max-width: 768px) {
     font-size: 30px;
   }
 `;
 
 const GrayText = styled.span`
-  color: ${({ theme }) => theme.textGray};
-  transition: color 0.3s ease-in-out;
+  color: #797979;
   z-index: 1;
 `;
 
 const SubTitle = styled.div`
   font-size: 16px;
   font-weight: 500;
-  color: ${({ theme }) => theme.textGray};
-  transition: color 0.3s ease-in-out;
+  color: #797979;
   @media (max-width: 768px) {
     font-size: 15px;
   }
@@ -85,7 +82,7 @@ const DesTitle = styled.div`
   font-size: 26px;
   font-weight: 700;
   margin-bottom: 30px;
-  color: ${({ theme }) => theme.text};
+  color: #111111;
   @media (max-width: 768px) {
     font-size: 20px;
   }
@@ -94,7 +91,7 @@ const DesTitle = styled.div`
 const DesText = styled.div`
   font-size: 20px;
   line-height: 1.7;
-  color: ${({ theme }) => theme.text};
+  color: #111111;
   @media (max-width: 768px) {
     font-size: 15px;
   }

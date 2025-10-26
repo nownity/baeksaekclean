@@ -8,7 +8,7 @@ import img3 from "../images/new3.JPEG";
 const BG = "#ffffff";
 const TEXT = "#0c0c0c";
 const SUB = "#4a4a4a";
-const ACCENT = "#1e66ff";
+const ACCENT = "#797979";
 const LINE = "#ececec";
 
 /* ==== 전체 섹션 ==== */
@@ -31,7 +31,7 @@ const Eyebrow = styled.p`
   color: ${ACCENT};
   font-weight: 700;
   letter-spacing: 0.02em;
-  margin: 0 0 8px;
+  margin: 0 0 50px;
 `;
 
 const Title = styled.h2`
@@ -41,7 +41,7 @@ const Title = styled.h2`
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1.2;
-  margin: 0 0 44px;
+  margin: 0 0 10px;
 `;
 
 /* ==== 카드 그리드 ==== */
@@ -140,8 +140,8 @@ const NewcareSection = () => {
   return (
     <Section>
       <Inner>
-        <Eyebrow>New Home Care</Eyebrow>
         <Title>새집케어 서비스</Title>
+        <Eyebrow>New Home Care</Eyebrow>
 
         <Grid>
           {items.map((it, i) => (

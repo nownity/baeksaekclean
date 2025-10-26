@@ -98,31 +98,16 @@ const LinkRow = styled.nav`
 
 const Meta = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
   justify-content: flex-start;
   flex-wrap: nowrap;
   color: ${SUB};
   font-size: 13px;
   line-height: 1.6;
 
-  span + span::before {
-    content: "·";
-    margin: 0 10px;
-    color: ${LINE};
-  }
-
   @media (max-width: 1250px) {
-    flex-direction: column;
     align-items: flex-start;
-
-    span + span::before {
-      content: "";
-      margin: 0;
-    }
-
-    span {
-      margin-top: 4px;
-    }
   }
 `;
 
@@ -161,9 +146,9 @@ const Footer = () => {
               <a href="/contact">문의하기</a>
             </LinkRow>
             <Meta>
-              <span>고객센터 10:00–18:00 (주말/공휴일 휴무)</span>
-              <span>baeknclean@example.com</span>
-              <span>Tel 010-9508-6626</span>
+              <span>고객센터 : 10:00–18:00 (주말/공휴일 휴무)</span>
+              <span>baeknclean@gmail.com</span>
+              <span>Tel : 010-9508-6626</span>
             </Meta>
           </InfoBlock>
         </FooterGrid>
