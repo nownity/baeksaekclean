@@ -10,6 +10,7 @@ import CoatingPage from "./pages/CoatingPage";
 import CleanPage from "./pages/CleanPage";
 import ContactPage from "./pages/ContactPage";
 import Footer from "./components/Footer";
+import FloatingButtons from "./components/FloatingButtons";
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -20,6 +21,7 @@ const App = () => {
       <GlobalStyle />
       <Router>
         <Header />
+        <FloatingButtons />
         <Routes>
           <Route
             path="/"
