@@ -13,7 +13,11 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 14px;
-  z-index: 999;
+  z-index: 998;
+  @media (max-width: 768px) {
+    right: 20px;
+    bottom: 70px;
+  }
 `;
 
 const ItemWrap = styled.div`
@@ -96,7 +100,7 @@ const TopButton = styled.button`
   pointer-events: ${(props) => (props.visible ? "auto" : "none")};
   transition: opacity 0.3s ease, transform 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  z-index: 9999;
+  z-index: 998;
 
   &:hover {
     transform: translateY(-3px);
@@ -105,9 +109,12 @@ const TopButton = styled.button`
   &:focus-visible {
     box-shadow: 0 0 0 4px rgba(12, 12, 12, 0.2);
   }
+  @media (max-width: 768px) {
+    right: 20px;
+    bottom: 20px;
+  }
 `;
 
-/* ================= React Component ================= */
 const FloatingButtons = () => {
   const [showTop, setShowTop] = useState(false);
 
