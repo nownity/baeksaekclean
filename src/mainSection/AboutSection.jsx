@@ -428,7 +428,7 @@ function useCountUpInView(containerRef, { duration = 1200, once = true } = {}) {
 }
 
 /* ================= Component ================= */
-const CleanWhySection_Pro_v2 = () => {
+const AboutSection = () => {
   // 히어로 틸트
   const tiltRef = useRef(null);
   useMouseTiltRef(tiltRef, 8);
@@ -561,4 +561,4 @@ const CleanWhySection_Pro_v2 = () => {
   );
 };
 
-export default CleanWhySection_Pro_v2;
+export default AboutSection;

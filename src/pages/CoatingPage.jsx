@@ -4,6 +4,7 @@ import CountertopSection from "../coatingSection/CountertopSection";
 import FloorSection from "../coatingSection/FloorSection";
 import WaxSection from "../coatingSection/WaxSection";
 import CoatingHeroSection from "../coatingSection/CoatingHeroSection";
+import ScrollSection from "../coatingSection/ScrollSection";
 
 const Container = styled.main`
   display: flex;
@@ -46,6 +47,8 @@ const CoatingPage = ({ toggleTheme, isDarkMode }) => {
     <Container>
       <MainWrapper>
         <CoatingHeroSection />
+        <ScrollSection />
+
         <section id="countertop" ref={countertopRef}>
           <CountertopSection currentSection={currentSection} />
         </section>

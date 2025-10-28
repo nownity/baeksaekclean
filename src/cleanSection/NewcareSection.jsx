@@ -1,17 +1,14 @@
-// NewcareSection.jsx
 import styled from "styled-components";
 import img1 from "../images/new1.JPEG";
 import img2 from "../images/new2.JPEG";
 import img3 from "../images/new3.JPEG";
 
-/* ==== 색상 토큰 ==== */
 const BG = "#ffffff";
 const TEXT = "#0c0c0c";
 const SUB = "#4a4a4a";
 const ACCENT = "#797979";
 const LINE = "#ececec";
 
-/* ==== 전체 섹션 ==== */
 const Section = styled.section`
   width: 100%;
   background: radial-gradient(1200px 300px at 50% -50%, #f6f8ff, ${BG});
@@ -25,7 +22,6 @@ const Inner = styled.div`
   max-width: 1200px;
 `;
 
-/* ==== 헤더 ==== */
 const Eyebrow = styled.p`
   text-align: center;
   color: ${ACCENT};
@@ -44,7 +40,6 @@ const Title = styled.h2`
   margin: 0 0 10px;
 `;
 
-/* ==== 카드 그리드 ==== */
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -59,7 +54,6 @@ const Grid = styled.div`
   }
 `;
 
-/* ==== 카드 ==== */
 const Card = styled.article`
   background: #fff;
   border: 1px solid ${LINE};
@@ -113,7 +107,6 @@ const Excerpt = styled.p`
   word-break: keep-all;
 `;
 
-/* ==== 데이터 ==== */
 const items = [
   {
     date: "2024-09-17",
@@ -135,7 +128,6 @@ const items = [
   },
 ];
 
-/* ==== 컴포넌트 ==== */
 const NewcareSection = () => {
   return (
     <Section>
