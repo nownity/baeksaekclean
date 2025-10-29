@@ -6,6 +6,7 @@ import OfficeSection from "../cleanSection/OfficeSection";
 import PostSection from "../cleanSection/PostSection";
 import NewcareSection from "../cleanSection/NewcareSection";
 import CleanHeroSection from "../cleanSection/CleanHeroSection";
+import CleanButtonSection from "../cleanSection/CleanButtonSection";
 
 const Container = styled.main`
   display: flex;
@@ -80,6 +81,7 @@ const CleanPage = ({ toggleTheme, isDarkMode }) => {
         <section id="newcare" ref={newcareRef}>
           <NewcareSection />
         </section>
+        <CleanButtonSection />
       </MainWrapper>
     </Container>
   );

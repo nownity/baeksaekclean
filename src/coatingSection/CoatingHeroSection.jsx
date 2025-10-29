@@ -200,6 +200,11 @@ const Tab = styled.button`
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
     border-color: ${TAB_HOVER};
   }
+  @media (max-width: 768px) {
+    font-size: 13px;
+    height: 40px;
+    padding: 0 16px;
+  }
 `;
 
 function scrollToIdWithOffset(id, offsetPx) {
@@ -290,8 +295,9 @@ const CoatingHeroSection = () => {
             $elevated={false}
             aria-label="청소 서비스 내비게이션"
           >
-            <Tab onClick={() => onTabClick("countertop")}>상판 코팅</Tab>
-            <Tab onClick={() => onTabClick("floor")}>마루 · 왁스 코팅</Tab>
+            <Tab onClick={() => onTabClick("countertop")}>코팅 서비스</Tab>
+            <Tab onClick={() => onTabClick("floor")}>상판 코팅</Tab>
+            <Tab onClick={() => onTabClick("wax")}>마루 · 왁스 코팅</Tab>
           </NavBar>
         )}
       </NavPlace>
@@ -304,8 +310,9 @@ const CoatingHeroSection = () => {
               $elevated={true}
               aria-label="청소 서비스 내비게이션 (고정)"
             >
-              <Tab onClick={() => onTabClick("countertop")}>상판 코팅</Tab>
-              <Tab onClick={() => onTabClick("floor")}>마루 · 왁스 코팅</Tab>
+              <Tab onClick={() => onTabClick("countertop")}>코팅 서비스</Tab>
+              <Tab onClick={() => onTabClick("floor")}>상판 코팅</Tab>
+              <Tab onClick={() => onTabClick("wax")}>마루 · 왁스 코팅</Tab>
             </NavBar>
           </FixedInner>
         </FixedShell>

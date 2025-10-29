@@ -65,6 +65,9 @@ const HeroContent = styled.div`
   text-align: center;
   color: #fff;
   margin-top: 200px;
+  @media (max-width: 768px) {
+    margin-top: 150px;
+  }
 `;
 
 const Kicker = styled.p`
@@ -87,7 +90,13 @@ const HeroTitle = styled.div`
     font-size: 44px;
   }
   @media (max-width: 768px) {
-    font-size: 30px;
+    font-size: 25px;
+  }
+  .mobile-br {
+    display: none;
+    @media (max-width: 768px) {
+      display: block;
+    }
   }
 `;
 
@@ -104,6 +113,7 @@ const HeroSub = styled.p`
 
   @media (max-width: 768px) {
     font-size: 15px;
+    display: none;
   }
 `;
 
@@ -160,7 +170,10 @@ const ScrollSection = () => {
 
       <HeroContent>
         <Kicker>COATING SERVICE</Kicker>
-        <HeroTitle>보이지 않는 오염, 스며들기 전에 막아야 합니다</HeroTitle>
+        <HeroTitle>
+          보이지 않는 오염, <br className="mobile-br" />
+          스며들기 전에 막아야 합니다
+        </HeroTitle>
         <HeroSub>
           코팅은 표면에 <strong>얇은 보호막</strong>을 형성해 오염의{" "}
           <strong>침투를 차단</strong>하고 물·기름 등을{" "}

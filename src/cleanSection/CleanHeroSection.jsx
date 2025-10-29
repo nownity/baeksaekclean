@@ -201,6 +201,12 @@ const Tab = styled.button`
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
     border-color: ${TAB_HOVER};
   }
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+    height: 40px;
+    padding: 0 16px;
+  }
 `;
 
 function scrollToIdWithOffset(id, offsetPx) {

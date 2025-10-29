@@ -516,10 +516,10 @@ const Header = ({ currentSection }) => {
               setMenuOpen(false);
             }}
           >
-            백엔클린
+            백앤클린
           </MLogo>
 
-          {/* 백엔클린 */}
+          {/* 백앤클린 */}
           <NavItemWrap
             onMouseEnter={() => setHoveredKey("hero")}
             onFocus={() => setHoveredKey("hero")}
@@ -599,7 +599,7 @@ const Header = ({ currentSection }) => {
           </NavItemWrap>
 
           <TextPhone>010-9508-6626</TextPhone>
-          <TextEmail>baeksaekclean@gmail.com</TextEmail>
+          <TextEmail>baeknclean@gmail.com</TextEmail>
         </Nav>
       </TopRow>
     </HeaderContainer>

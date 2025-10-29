@@ -2,9 +2,10 @@ import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import CountertopSection from "../coatingSection/CountertopSection";
 import FloorSection from "../coatingSection/FloorSection";
-import WaxSection from "../coatingSection/WaxSection";
 import CoatingHeroSection from "../coatingSection/CoatingHeroSection";
 import ScrollSection from "../coatingSection/ScrollSection";
+import WhyCoatingSection from "../coatingSection/WhyCoatingSection";
+import ButtonSection from "../coatingSection/ButtonSection";
 
 const Container = styled.main`
   display: flex;
@@ -19,7 +20,7 @@ const MainWrapper = styled.main`
   flex-direction: column;
 `;
 
-const CoatingPage = ({ toggleTheme, isDarkMode }) => {
+const CoatingPage = () => {
   const [currentSection, setCurrentSection] = useState("countertop");
 
   const countertopRef = useRef(null);
@@ -50,18 +51,19 @@ const CoatingPage = ({ toggleTheme, isDarkMode }) => {
         <ScrollSection />
 
         <section id="countertop" ref={countertopRef}>
-          <CountertopSection currentSection={currentSection} />
+          <WhyCoatingSection currentSection={currentSection} />
         </section>
 
         {/* “상가·사무실 청소” → floor */}
         <section id="floor" ref={floorRef}>
-          <FloorSection />
+          <CountertopSection />
         </section>
 
         {/* “준공 청소” → wax */}
         <section id="wax" ref={waxRef}>
-          <WaxSection />
+          <FloorSection />
         </section>
+        <ButtonSection />
       </MainWrapper>
     </Container>
   );
