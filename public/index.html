@@ -121,9 +121,23 @@
     </script>
   </head>
   <body>
-    <noscript
-      >자바스크립트를 활성화해주세요. 이 사이트는 React로 작동합니다.</noscript
-    >
+    <nav aria-label="Primary" hidden>
+      <a href="/clean">청소 서비스</a>
+      <a href="/coating">코팅 서비스</a>
+      <a href="/contact">상담 문의</a>
+    </nav>
+
+    <noscript>
+      <p>자바스크립트를 활성화해주세요. 이 사이트는 React로 작동합니다.</p>
+      <nav aria-label="Primary (noscript)">
+        <ul>
+          <li><a href="/clean">청소 서비스</a></li>
+          <li><a href="/coating">코팅 서비스</a></li>
+          <li><a href="/contact">상담 문의</a></li>
+        </ul>
+      </nav>
+    </noscript>
+
     <div id="root"></div>
   </body>
 </html>
